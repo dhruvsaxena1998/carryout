@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:carryout/models/menu.dart';
-import 'package:carryout/widgets/HomeAppBarWidget.dart';
-import 'package:carryout/widgets/CardWidget.dart';
+import 'package:carryout/widgets/home/HomeAppBarWidget.dart';
+import 'package:carryout/widgets/home/CardWidget.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key key}) : super(key: key);

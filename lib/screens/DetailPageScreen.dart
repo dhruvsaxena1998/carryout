@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:carryout/theme.dart';
 
-import 'package:carryout/widgets/CommonAppBarWidget.dart';
-import 'package:carryout/widgets/EmojiRatingWidget.dart';
-import 'package:carryout/widgets/PriceWidget.dart';
-import 'package:carryout/widgets/FullWidthButtonWidget.dart';
+import 'package:carryout/widgets/common/CommonAppBarWidget.dart';
+import 'package:carryout/widgets/common/EmojiRatingWidget.dart';
+import 'package:carryout/widgets/common/PriceWidget.dart';
+import 'package:carryout/widgets/common/FullWidthButtonWidget.dart';
 
 import 'package:carryout/models/menu.dart';
 

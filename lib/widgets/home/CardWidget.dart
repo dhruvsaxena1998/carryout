@@ -1,10 +1,11 @@
-import 'package:carryout/widgets/PriceWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'package:carryout/theme.dart';
-import 'package:carryout/widgets/EmojiRatingWidget.dart';
+import 'package:carryout/widgets/common/EmojiRatingWidget.dart';
+import 'package:carryout/widgets/common/PriceWidget.dart';
+
 import 'package:carryout/models/menu.dart';
 
 class CardWidget extends StatelessWidget {
