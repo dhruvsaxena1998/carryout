@@ -1,15 +1,26 @@
+import 'package:flutter/material.dart';
+
 class Menu {
+  final int id;
   final String name;
   final double rating;
   final int reviews;
   final double price;
   final String image;
 
-  Menu({this.name, this.price, this.image, this.rating, this.reviews});
+  Menu({
+    @required this.id,
+    @required this.name,
+    @required this.price,
+    @required this.image,
+    @required this.rating,
+    @required this.reviews,
+  });
 }
 
 List<Menu> menuItems = [
   Menu(
+    id: 1,
     name: 'Mexican Potatoes',
     rating: 4.63,
     reviews: 263,
@@ -17,6 +28,7 @@ List<Menu> menuItems = [
     image: 'https://i.imgur.com/QDjtvYA.jpg',
   ),
   Menu(
+    id: 2,
     name: 'Salad',
     rating: 3.29,
     reviews: 174,

@@ -47,20 +47,20 @@ class AppBarWidget extends StatelessWidget {
                     ],
                   ),
                 ),
-                GestureDetector(
+                InkWell(
                   onTap: () {},
+                  customBorder: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(25),
+                  ),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(25),
                     child: Container(
                       height: 70,
                       width: 70,
-                      child: Image.network(
-                        img,
-                        fit: BoxFit.cover,
-                      ),
+                      child: Image.network(img),
                     ),
                   ),
-                )
+                ),
               ],
             ),
           ],

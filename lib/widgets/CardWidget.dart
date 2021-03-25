@@ -1,3 +1,4 @@
+import 'package:carryout/widgets/PriceWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -19,21 +20,7 @@ class CardWidget extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: 20, left: 10, right: 10),
       child: InkWell(
         onTap: () {
-          Get.snackbar(
-            'Flutter',
-            item.name,
-            colorText: AppTheme.colors.white,
-            snackPosition: SnackPosition.BOTTOM,
-            backgroundColor: AppTheme.colors.dark,
-            icon: Icon(
-              Icons.check_circle,
-              color: AppTheme.colors.accent,
-            ),
-            margin: const EdgeInsets.symmetric(
-              horizontal: 10,
-              vertical: 10,
-            ),
-          );
+          Get.toNamed('/detail', arguments: item);
         },
         customBorder: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(25),
@@ -63,10 +50,13 @@ class CardWidget extends StatelessWidget {
                         children: [
                           Text(
                             item.name,
+                            maxLines: 3,
+                            overflow: TextOverflow.ellipsis,
                             style: GoogleFonts.quicksand(
                               color: AppTheme.colors.white,
                               fontSize: width * 0.06,
                               fontWeight: FontWeight.w900,
+                              letterSpacing: 1.2,
                             ),
                           ),
                           SizedBox(
@@ -81,37 +71,19 @@ class CardWidget extends StatelessWidget {
                       SizedBox(
                         height: 40,
                       ),
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(15),
-                        child: Container(
-                          height: 50,
-                          width: 100,
-                          color: AppTheme.colors.accent,
-                          child: Align(
-                            alignment: Alignment.center,
-                            child: Text(
-                              "₹ ${item.price}",
-                              style: GoogleFonts.inter(
-                                color: AppTheme.colors.dark,
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
+                      PriceWidget(price: item.price),
                     ],
                   ),
                 ),
-                Container(
-                  width: width * 0.4,
-                  height: width * 0.4,
-                  child: CircleAvatar(
-                    radius: 30.0,
-                    backgroundImage: NetworkImage(
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(width * 0.2),
+                  child: Container(
+                    width: width * 0.4,
+                    height: width * 0.4,
+                    child: Image.network(
                       item.image,
+                      fit: BoxFit.cover,
                     ),
-                    backgroundColor: AppTheme.colors.black,
                   ),
                 ),
               ],

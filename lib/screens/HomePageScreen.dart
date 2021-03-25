@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:carryout/theme.dart';
 import 'package:carryout/models/menu.dart';
-import 'package:carryout/widgets/AppBarWidget.dart';
+import 'package:carryout/widgets/HomeAppBarWidget.dart';
 import 'package:carryout/widgets/CardWidget.dart';
 
 class HomePage extends StatelessWidget {
@@ -11,7 +10,6 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        color: AppTheme.colors.black,
         child: Column(
           children: <Widget>[
             AppBarWidget(
