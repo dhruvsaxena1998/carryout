@@ -24,10 +24,11 @@ class FullWidthButtonWidget extends StatelessWidget {
             alignment: Alignment.center,
             child: Text(
               title.toUpperCase(),
-              style: GoogleFonts.inter(
+              style: TextStyle(
                 color: AppTheme.colors.dark,
                 fontSize: 24,
-                fontWeight: FontWeight.bold,
+                fontFamily: 'Poppins',
+                fontWeight: FontWeight.w700,
                 letterSpacing: 1.2,
               ),
             ),

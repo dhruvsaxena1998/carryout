@@ -26,6 +26,7 @@ class MyApp extends StatelessWidget {
         accentColor: AppTheme.colors.black,
         visualDensity: VisualDensity.adaptivePlatformDensity,
         scaffoldBackgroundColor: AppTheme.colors.black,
+        fontFamily: 'Avenir',
       ),
       initialRoute: '/home',
       getPages: routes,

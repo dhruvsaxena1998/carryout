@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:carryout/theme.dart';
 
 class AppBarWidget extends StatelessWidget {
@@ -28,10 +27,11 @@ class AppBarWidget extends StatelessWidget {
                     children: [
                       Text(
                         'Hi ' + username,
-                        style: GoogleFonts.quicksand(
-                          fontSize: 32,
+                        style: TextStyle(
+                          fontFamily: 'Poppins',
+                          fontSize: 34,
                           color: AppTheme.colors.white,
-                          fontWeight: FontWeight.bold,
+                          fontWeight: FontWeight.w700,
                         ),
                       ),
                       SizedBox(
@@ -39,9 +39,11 @@ class AppBarWidget extends StatelessWidget {
                       ),
                       Text(
                         'We hope you are in good mood of ordering',
-                        style: GoogleFonts.inter(
+                        style: TextStyle(
                           fontSize: 18,
                           color: AppTheme.colors.light,
+                          fontFamily: 'Avenir',
+                          fontWeight: FontWeight.w500,
                         ),
                       ),
                     ],

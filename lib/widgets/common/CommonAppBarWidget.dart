@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:carryout/theme.dart';
 import 'package:marquee_text/marquee_direction.dart';
 import 'package:marquee_text/marquee_text.dart';
@@ -40,10 +39,12 @@ class CommonAppBarWidget extends StatelessWidget {
                     alignment: Alignment.center,
                     child: MarqueeText(
                       text: name,
-                      style: GoogleFonts.quicksand(
+                      style: TextStyle(
                         color: AppTheme.colors.light,
                         fontSize: 24,
-                        fontWeight: FontWeight.bold,
+                        fontWeight: FontWeight.w700,
+                        fontFamily: 'Poppins',
+                        letterSpacing: 1.2,
                       ),
                       speed: 30,
                       alwaysScroll: false,

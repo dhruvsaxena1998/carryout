@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
-
 import 'package:carryout/theme.dart';
 import 'package:carryout/widgets/common/EmojiRatingWidget.dart';
 import 'package:carryout/widgets/common/PriceWidget.dart';
@@ -53,11 +51,11 @@ class CardWidget extends StatelessWidget {
                             item.name,
                             maxLines: 3,
                             overflow: TextOverflow.ellipsis,
-                            style: GoogleFonts.quicksand(
+                            style: TextStyle(
                               color: AppTheme.colors.white,
                               fontSize: width * 0.06,
-                              fontWeight: FontWeight.w900,
-                              letterSpacing: 1.2,
+                              fontFamily: 'Avenir',
+                              fontWeight: FontWeight.w700,
                             ),
                           ),
                           SizedBox(

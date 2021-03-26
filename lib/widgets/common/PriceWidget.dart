@@ -1,7 +1,5 @@
 import 'package:carryout/theme.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-
 class PriceWidget extends StatelessWidget {
   final double price;
 
@@ -19,10 +17,11 @@ class PriceWidget extends StatelessWidget {
           alignment: Alignment.center,
           child: Text(
             "₹ $price",
-            style: GoogleFonts.inter(
+            style: TextStyle(
               color: AppTheme.colors.dark,
               fontSize: 18,
-              fontWeight: FontWeight.bold,
+              fontWeight: FontWeight.w700,
+              fontFamily: 'Poppins',
             ),
           ),
         ),
