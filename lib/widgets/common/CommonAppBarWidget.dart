@@ -26,7 +26,7 @@ class CommonAppBarWidget extends StatelessWidget {
               children: [
                 IconButton(
                   icon: Icon(
-                    Icons.arrow_back_ios_rounded,
+                    Icons.arrow_back_rounded,
                     color: AppTheme.colors.light,
                   ),
                   onPressed: () {
@@ -41,7 +41,7 @@ class CommonAppBarWidget extends StatelessWidget {
                       text: name,
                       style: TextStyle(
                         color: AppTheme.colors.light,
-                        fontSize: 24,
+                        fontSize: 28,
                         fontWeight: FontWeight.w700,
                         fontFamily: 'Poppins',
                         letterSpacing: 1.2,

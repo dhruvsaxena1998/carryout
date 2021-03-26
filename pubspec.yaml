@@ -64,12 +64,12 @@ flutter:
   fonts:
     - family: Avenir
       fonts:
+        - asset: assets/fonts/AvenirLTProHeavy.otf
+          weight: 700
         - asset: assets/fonts/AvenirLTProBook.otf
           weight: 500
         - asset: assets/fonts/AvenirLTProRoman.otf
           weight: 400
-        - asset: assets/fonts/AvenirLTProHeavy.otf
-          weight: 700
         - asset: assets/fonts/AvenirLTProMedium.otf
           weight: 300
         - asset: assets/fonts/AvenirLTProLight.otf

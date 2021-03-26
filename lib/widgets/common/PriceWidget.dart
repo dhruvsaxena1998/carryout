@@ -1,5 +1,6 @@
 import 'package:carryout/theme.dart';
 import 'package:flutter/material.dart';
+
 class PriceWidget extends StatelessWidget {
   final double price;
 

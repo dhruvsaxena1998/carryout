@@ -1,6 +1,5 @@
 import 'package:carryout/theme.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class FullWidthButtonWidget extends StatelessWidget {
   final String title;
@@ -26,7 +25,7 @@ class FullWidthButtonWidget extends StatelessWidget {
               title.toUpperCase(),
               style: TextStyle(
                 color: AppTheme.colors.dark,
-                fontSize: 24,
+                fontSize: 20,
                 fontFamily: 'Poppins',
                 fontWeight: FontWeight.w700,
                 letterSpacing: 1.2,
