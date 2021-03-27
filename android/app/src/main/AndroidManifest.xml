@@ -2,7 +2,9 @@
     package="com.example.carryout">
    <application
         android:label="carryout"
+        android:usesCleartextTraffic="true"
         android:icon="@mipmap/ic_launcher">
+         <!-- TODO: Disable line 05 on production -->
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
