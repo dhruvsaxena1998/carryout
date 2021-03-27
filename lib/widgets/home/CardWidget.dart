@@ -58,9 +58,6 @@ class CardWidget extends StatelessWidget {
                               fontWeight: FontWeight.w700,
                             ),
                           ),
-                          SizedBox(
-                            height: 15,
-                          ),
                           EmojiRatingWidget(
                             rating: item.rating,
                             reviews: item.reviews,

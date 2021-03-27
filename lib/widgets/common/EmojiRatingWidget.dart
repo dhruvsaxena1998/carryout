@@ -7,8 +7,8 @@ class EmojiRatingWidget extends StatelessWidget {
 
   const EmojiRatingWidget({
     Key key,
-    this.rating,
-    this.reviews,
+    @required this.rating,
+    @required this.reviews,
   }) : super(key: key);
 
   String getEmoji(double rating) {
@@ -21,7 +21,7 @@ class EmojiRatingWidget extends StatelessWidget {
       emoticon = '👍';
     }
 
-    return "$emoticon  $rating";
+    return "$emoticon";
   }
 
   @override
@@ -32,21 +32,27 @@ class EmojiRatingWidget extends StatelessWidget {
           TextSpan(
             text: getEmoji(rating),
             style: TextStyle(
-              color: AppTheme.colors.accent,
-              fontSize: 18,
-              fontFamily: 'Poppins',
-              fontWeight: FontWeight.w700,
+              fontSize: 14,
             ),
           ),
           TextSpan(
-            text: "  ($reviews)",
+            text: " $rating",
+            style: TextStyle(
+              color: AppTheme.colors.accent,
+              fontSize: 16,
+              fontFamily: 'Poppins',
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+          TextSpan(
+            text: " ($reviews)",
             style: TextStyle(
               color: AppTheme.colors.light,
-              fontSize: 16,
-              fontWeight: FontWeight.w500,
-              fontFamily: 'Avenir',
+              fontSize: 14,
+              fontFamily: 'Poppins',
+              fontWeight: FontWeight.w300,
             ),
-          )
+          ),
         ],
       ),
     );

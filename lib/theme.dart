@@ -6,6 +6,7 @@ class ThemeColors {
   final Color dark = Color(0xFF2D2D2D);
   final Color light = Color(0xFFDBDBDB);
   final Color accent = Color(0xFFFFE598);
+  final Color danger = Color(0xFFE94B3C);
 }
 
 class AppTheme {

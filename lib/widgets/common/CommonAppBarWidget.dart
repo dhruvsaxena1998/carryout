@@ -14,54 +14,43 @@ class CommonAppBarWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Container(
-        padding: const EdgeInsets.all(10),
-        child: Column(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            SizedBox(
-              height: 10,
+            IconButton(
+              icon: Icon(
+                Icons.arrow_back_rounded,
+                color: AppTheme.colors.light,
+              ),
+              onPressed: () {
+                Get.back();
+              },
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                IconButton(
-                  icon: Icon(
-                    Icons.arrow_back_rounded,
-                    color: AppTheme.colors.light,
-                  ),
-                  onPressed: () {
-                    Get.back();
-                  },
+            Expanded(
+              flex: 1,
+              child: MarqueeText(
+                text: name,
+                style: TextStyle(
+                  color: AppTheme.colors.light,
+                  fontSize: 22,
+                  fontWeight: FontWeight.w700,
+                  fontFamily: 'Avenir',
+                  letterSpacing: 1.2,
                 ),
-                Expanded(
-                  flex: 1,
-                  child: Align(
-                    alignment: Alignment.center,
-                    child: MarqueeText(
-                      text: name,
-                      style: TextStyle(
-                        color: AppTheme.colors.light,
-                        fontSize: 28,
-                        fontWeight: FontWeight.w700,
-                        fontFamily: 'Poppins',
-                        letterSpacing: 1.2,
-                      ),
-                      speed: 30,
-                      alwaysScroll: false,
-                      marqueeDirection: MarqueeDirection.rtl,
-                    ),
-                  ),
-                ),
-                IconButton(
-                  icon: Icon(
-                    Icons.bookmark_border_rounded,
-                    color: AppTheme.colors.light,
-                  ),
-                  onPressed: () {
-                    // Save Bookmark
-                  },
-                )
-              ],
+                speed: 30,
+                alwaysScroll: false,
+                marqueeDirection: MarqueeDirection.rtl,
+              ),
+            ),
+            IconButton(
+              icon: Icon(
+                Icons.bookmark_border_rounded,
+                color: AppTheme.colors.light,
+              ),
+              onPressed: () {
+                // Save Bookmark
+              },
             ),
           ],
         ),
