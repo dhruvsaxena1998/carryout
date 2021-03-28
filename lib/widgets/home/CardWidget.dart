@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 import 'package:carryout/theme.dart';
+
+import 'package:carryout/utils/api.dart';
+
 import 'package:carryout/widgets/common/EmojiRatingWidget.dart';
 import 'package:carryout/widgets/common/PriceWidget.dart';
 
-import 'package:carryout/models/menu.dart';
+import 'package:carryout/models/menuItem.dart';
 
 class CardWidget extends StatelessWidget {
-  final Menu item;
+  final MenuItem item;
 
   const CardWidget({Key key, this.item}) : super(key: key);
 
@@ -58,9 +62,11 @@ class CardWidget extends StatelessWidget {
                               fontWeight: FontWeight.w700,
                             ),
                           ),
+                          // ignore: todo
+                          // TODO: Add rating service
                           EmojiRatingWidget(
-                            rating: item.rating,
-                            reviews: item.reviews,
+                            rating: 4.2,
+                            reviews: 152,
                           ),
                         ],
                       ),
@@ -77,7 +83,7 @@ class CardWidget extends StatelessWidget {
                     width: width * 0.4,
                     height: width * 0.4,
                     child: Image.network(
-                      item.image,
+                      "${API.baseURL}${item.image.formats.thumbnail.url}",
                       fit: BoxFit.cover,
                     ),
                   ),

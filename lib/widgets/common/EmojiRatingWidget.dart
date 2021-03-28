@@ -7,8 +7,8 @@ class EmojiRatingWidget extends StatelessWidget {
 
   const EmojiRatingWidget({
     Key key,
-    @required this.rating,
-    @required this.reviews,
+    this.rating = 3.2,
+    this.reviews = 145,
   }) : super(key: key);
 
   String getEmoji(double rating) {

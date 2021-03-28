@@ -4,8 +4,15 @@ import 'package:flutter/material.dart';
 import 'package:marquee_text/marquee_direction.dart';
 import 'package:marquee_text/marquee_text.dart';
 
+import 'package:carryout/models/menuItem.dart';
+
 class FoodItemWidget extends StatelessWidget {
-  const FoodItemWidget({Key key}) : super(key: key);
+  final Item item;
+
+  const FoodItemWidget({
+    Key key,
+    this.item,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +34,7 @@ class FoodItemWidget extends StatelessWidget {
             child: Padding(
               padding: EdgeInsets.all(paddingAmount),
               child: MarqueeText(
-                text: 'Potatoes',
+                text: item.name,
                 style: TextStyle(
                   color: AppTheme.colors.light,
                   fontSize: 18,
@@ -69,7 +76,7 @@ class FoodItemWidget extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(vertical: 15),
                     color: AppTheme.colors.dark,
                     child: Text(
-                      '10',
+                      item.defaultQty.toString(),
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: AppTheme.colors.light,

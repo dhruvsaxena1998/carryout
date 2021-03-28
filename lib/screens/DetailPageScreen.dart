@@ -1,17 +1,16 @@
-import 'package:carryout/widgets/detail/FoodItemWidget.dart';
+import 'package:carryout/utils/api.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 import 'package:carryout/theme.dart';
 
 import 'package:carryout/widgets/common/CommonAppBarWidget.dart';
 import 'package:carryout/widgets/common/EmojiRatingWidget.dart';
 import 'package:carryout/widgets/common/PriceWidget.dart';
 import 'package:carryout/widgets/common/FullWidthButtonWidget.dart';
+import 'package:carryout/widgets/detail/FoodItemWidget.dart';
 
-import 'package:carryout/models/menu.dart';
-
-import '../widgets/common/EmojiRatingWidget.dart';
-import '../widgets/common/PriceWidget.dart';
+import 'package:carryout/models/menuItem.dart';
 
 class DetailPage extends StatefulWidget {
   DetailPage({Key key}) : super(key: key);
@@ -21,7 +20,7 @@ class DetailPage extends StatefulWidget {
 }
 
 class _DetailPageState extends State<DetailPage> {
-  final Menu item = Get.arguments;
+  final MenuItem item = Get.arguments;
 
   @override
   Widget build(BuildContext context) {
@@ -62,15 +61,12 @@ class _DetailPageState extends State<DetailPage> {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(width * 1.4),
                   child: Image.network(
-                    item.image,
+                    "${API.baseURL}${item.image.url}",
                     fit: BoxFit.cover,
                   ),
                 ),
               ),
-              EmojiRatingWidget(
-                rating: item.rating,
-                reviews: item.reviews,
-              ),
+              EmojiRatingWidget(),
               Align(
                 alignment: Alignment.centerRight,
                 child: Padding(
@@ -105,9 +101,11 @@ class _DetailPageState extends State<DetailPage> {
                       child: ListView.builder(
                         shrinkWrap: true,
                         physics: NeverScrollableScrollPhysics(),
-                        itemCount: 4,
+                        itemCount: item.compulsory.length,
                         itemBuilder: (context, index) {
-                          return FoodItemWidget();
+                          return FoodItemWidget(
+                            item: item.compulsory[index],
+                          );
                         },
                       ),
                     )

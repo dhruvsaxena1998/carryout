@@ -5,7 +5,7 @@ import 'package:marquee_text/marquee_direction.dart';
 import 'package:marquee_text/marquee_text.dart';
 
 class CommonAppBarWidget extends StatelessWidget {
-  final int id;
+  final String id;
   final String name;
 
   CommonAppBarWidget({Key key, this.id, this.name}) : super(key: key);
