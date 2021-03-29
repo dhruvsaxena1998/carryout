@@ -1,0 +1,20 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/wallets/:id",
+      "handler": "wallet.findOne",
+      "config": {
+        "policies": ["global::rateLimit", "global::isAuthenticated"]
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/wallets",
+      "handler": "wallet.create",
+      "config": {
+        "policies": ["global::rateLimit", "global::isAuthenticated"]
+      }
+    }
+  ]
+}

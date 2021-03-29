@@ -1,0 +1,32 @@
+{
+  "collectionName": "components_common_transactions",
+  "info": {
+    "name": "transaction",
+    "icon": "money-check-alt"
+  },
+  "options": {},
+  "attributes": {
+    "amount": {
+      "type": "biginteger"
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "credit",
+        "debit"
+      ]
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "pending",
+        "completed",
+        "error",
+        "failed"
+      ]
+    },
+    "log": {
+      "type": "json"
+    }
+  }
+}
