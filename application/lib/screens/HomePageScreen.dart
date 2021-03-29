@@ -1,9 +1,6 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
-import 'package:dio/dio.dart';
 
-import 'package:carryout/utils/api.dart';
+import 'package:carryout/utils/strapi.dart';
 
 import 'package:carryout/widgets/home/HomeAppBarWidget.dart';
 import 'package:carryout/widgets/home/CardWidget.dart';
@@ -19,13 +16,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  getMenu() async {
-    final String url = "${API.baseURL}${API.collections.menu}";
-    log("[Request: GET] $url");
-    var response = await Dio().get(url);
-    return response.data;
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,7 +30,7 @@ class _HomePageState extends State<HomePage> {
               height: 15,
             ),
             FutureBuilder(
-              future: getMenu(),
+              future: Strapi.find('menus'),
               builder: __menuItemsBuilder,
             ),
           ],
