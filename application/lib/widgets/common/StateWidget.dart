@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:blobs/blobs.dart';
 import 'package:carryout/theme.dart';
 
-const double size = 200;
+const double size = 300;
 
 class LoadingBlobWidget extends StatelessWidget {
   const LoadingBlobWidget({Key key}) : super(key: key);
@@ -14,13 +14,8 @@ class LoadingBlobWidget extends StatelessWidget {
     return Expanded(
       flex: 1,
       child: Center(
-        child: Blob.animatedRandom(
-          size: size,
-          styles: BlobStyles(
-            color: AppTheme.colors.accent,
-          ),
-          loop: true,
-          duration: Duration(milliseconds: 1000),
+        child: CircularProgressIndicator(
+          backgroundColor: AppTheme.colors.accent,
         ),
       ),
     );
@@ -69,12 +64,12 @@ class ErrorBlobWidget extends StatelessWidget {
           ),
           child: Center(
             child: Text(
-              'Error',
+              'Errored!',
               style: TextStyle(
-                color: AppTheme.colors.dark,
+                color: AppTheme.colors.danger,
                 fontFamily: 'Poppins',
                 fontWeight: FontWeight.w700,
-                fontSize: 32,
+                fontSize: 22,
               ),
             ),
           ),
