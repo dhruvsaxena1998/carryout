@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:carryout/utils/api.dart';
 import 'package:carryout/utils/strapi.dart';
 
 import 'package:carryout/widgets/home/HomeAppBarWidget.dart';
@@ -23,8 +24,8 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           children: <Widget>[
             AppBarWidget(
-              username: 'Julia',
-              img: 'https://i.imgur.com/AB85UCe.jpg',
+              username: 'Dhruv',
+              img: "${API.baseURL}/uploads/avatar_cc865a4043.png",
             ),
             SizedBox(
               height: 15,

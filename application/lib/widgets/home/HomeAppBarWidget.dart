@@ -26,7 +26,7 @@ class AppBarWidget extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Hi ' + username,
+                        'Hi, ' + username,
                         style: TextStyle(
                           fontFamily: 'Poppins',
                           fontSize: 34,
