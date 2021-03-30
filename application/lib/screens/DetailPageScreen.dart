@@ -1,11 +1,10 @@
-import 'package:carryout/utils/api.dart';
+import 'package:carryout/widgets/detail/DetailsFooterWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:carryout/theme.dart';
 
-import 'package:carryout/widgets/common/PriceWidget.dart';
-import 'package:carryout/widgets/common/FullWidthButtonWidget.dart';
+import 'package:carryout/widgets/detail/ImageCardWidget.dart';
 import 'package:carryout/widgets/detail/FoodItemWidget.dart';
 
 import 'package:carryout/models/menuItem.dart';
@@ -22,104 +21,24 @@ class _DetailPageState extends State<DetailPage> {
 
   @override
   Widget build(BuildContext context) {
-    final double width = MediaQuery.of(context).size.width - 30;
     return Scaffold(
-      bottomNavigationBar: Container(
-        height: 50,
-        margin: const EdgeInsets.all(20),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Expanded(
-              flex: 3,
-              child: Padding(
-                padding: const EdgeInsets.only(right: 5),
-                child: FullWidthButtonWidget(title: 'Checkout'),
-              ),
-            ),
-            Expanded(
-              flex: 1,
-              child: Padding(
-                padding: const EdgeInsets.only(left: 5),
-                child: PriceWidget(price: item.price),
-              ),
-            ),
-          ],
-        ),
-      ),
+      bottomNavigationBar: DetailsFooterWidget(price: item.price),
       body: SingleChildScrollView(
         physics: BouncingScrollPhysics(),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            Container(
-              width: width,
-              margin: const EdgeInsets.only(top: 50),
-              padding: const EdgeInsets.all(10),
-              decoration: BoxDecoration(
-                color: AppTheme.colors.dark,
-                borderRadius: BorderRadius.circular(25),
-                boxShadow: [
-                  BoxShadow(
-                    color: AppTheme.colors.black,
-                    blurRadius: 10,
-                  ),
-                ],
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  Hero(
-                    tag: "image-${item.id}",
-                    child: Container(
-                      height: width,
-                      padding: const EdgeInsets.all(10),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(25),
-                        child: Image.network(
-                          "${API.baseURL}${item.image.url}",
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(10),
-                    child: Column(
-                      children: [
-                        Align(
-                          alignment: Alignment.centerRight,
-                          child: Text(
-                            item.name,
-                            style: TextStyle(
-                              color: AppTheme.colors.white,
-                              fontSize: 22,
-                              fontFamily: 'Poppins',
-                              fontWeight: FontWeight.w700,
-                            ),
-                          ),
-                        ),
-                        Align(
-                          alignment: Alignment.centerRight,
-                          child: Text(
-                            item.description,
-                            textAlign: TextAlign.justify,
-                            style: TextStyle(
-                              color: AppTheme.colors.light,
-                              fontSize: 16,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
+            ImageCardWidget(item: item),
+            _listBuilder(
+              context: context,
+              title: 'Items',
+              list: item.compulsory,
             ),
-            __listBuilder(
-                context: context, title: 'Items', list: item.compulsory),
-            __listBuilder(
-                context: context, title: 'Optional', list: item.optional),
+            _listBuilder(
+              context: context,
+              title: 'Optional',
+              list: item.optional,
+            ),
           ],
         ),
       ),
@@ -127,24 +46,7 @@ class _DetailPageState extends State<DetailPage> {
   }
 }
 
-class CustomAppBar extends PreferredSize {
-  final double height;
-  final Widget child;
-  const CustomAppBar({Key key, this.height = 100, this.child});
-
-  @override
-  Size get preferredSize => Size.fromHeight(height);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: preferredSize.height,
-      child: child,
-    );
-  }
-}
-
-Widget __listBuilder({
+Widget _listBuilder({
   @required BuildContext context,
   @required String title,
   @required List list,

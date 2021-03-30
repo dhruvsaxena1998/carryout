@@ -9,14 +9,9 @@ import 'package:carryout/widgets/common/StateWidget.dart';
 
 import 'package:carryout/models/menuItem.dart';
 
-class HomePage extends StatefulWidget {
+class HomePage extends StatelessWidget {
   const HomePage({Key key}) : super(key: key);
 
-  @override
-  _HomePageState createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,20 +54,17 @@ Widget __menuItemsBuilder(BuildContext context, AsyncSnapshot snapshot) {
     items.add(new MenuItem.fromJson(item));
   });
   return Expanded(
-    child: ClipRRect(
-      borderRadius: BorderRadius.circular(25),
-      child: MediaQuery.removePadding(
-        removeTop: true,
-        context: context,
-        child: ListView.builder(
-          physics: BouncingScrollPhysics(),
-          itemCount: items.length,
-          itemBuilder: (context, index) {
-            return CardWidget(
-              item: items[index],
-            );
-          },
-        ),
+    child: MediaQuery.removePadding(
+      removeTop: true,
+      context: context,
+      child: ListView.builder(
+        physics: BouncingScrollPhysics(),
+        itemCount: items.length,
+        itemBuilder: (context, index) {
+          return CardWidget(
+            item: items[index],
+          );
+        },
       ),
     ),
   );

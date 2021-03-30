@@ -16,23 +16,18 @@ class FoodItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final double width = MediaQuery.of(context).size.width;
-
-    final double paddingAmount = 15;
-    final double borderRadius = 10;
-    return Container(
+    return Card(
       margin: const EdgeInsets.symmetric(vertical: 7),
-      width: width,
-      decoration: BoxDecoration(
-        color: AppTheme.colors.dark,
-        borderRadius: BorderRadius.circular(borderRadius),
+      color: AppTheme.colors.dark,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10),
       ),
       child: Row(
         children: <Widget>[
           Expanded(
-            flex: 1,
+            flex: 2,
             child: Padding(
-              padding: EdgeInsets.all(paddingAmount),
+              padding: EdgeInsets.all(15),
               child: MarqueeText(
                 text: item.name,
                 style: TextStyle(
@@ -48,58 +43,60 @@ class FoodItemWidget extends StatelessWidget {
               ),
             ),
           ),
-          Container(
-            margin: EdgeInsets.all(paddingAmount / 2),
-            width: width * 0.35,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(borderRadius),
-              color: AppTheme.colors.black,
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(
+              "₹ ${item.price} /p",
+              style: TextStyle(
+                color: AppTheme.colors.light,
+                fontFamily: 'Poppins',
+                fontWeight: FontWeight.w700,
+                fontSize: 12,
+              ),
             ),
-            // FIXME: Fixes required for small screen
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                InkWell(
-                  onTap: () {},
-                  child: Padding(
-                    padding: EdgeInsets.all(paddingAmount),
-                    child: Icon(
+          ),
+          Expanded(
+            flex: 1,
+            child: Card(
+              color: AppTheme.colors.black,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  IconButton(
+                    icon: Icon(
                       Icons.remove,
                       color: AppTheme.colors.light,
                     ),
+                    onPressed: () {},
                   ),
-                ),
-                Expanded(
-                  flex: 1,
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(vertical: 15),
-                    color: AppTheme.colors.dark,
+                  Expanded(
+                    flex: 1,
                     child: Text(
-                      item.defaultQty.toString(),
+                      "${item.defaultQty}",
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                        color: AppTheme.colors.light,
-                        fontSize: 18,
+                        color: AppTheme.colors.accent,
+                        fontSize: 20,
                         fontFamily: 'Poppins',
                         fontWeight: FontWeight.w700,
                       ),
                     ),
                   ),
-                ),
-                InkWell(
-                  onTap: () {},
-                  child: Padding(
-                    padding: EdgeInsets.all(paddingAmount),
-                    child: Icon(
+                  IconButton(
+                    icon: Icon(
                       Icons.add,
                       color: AppTheme.colors.light,
                     ),
+                    onPressed: () {},
                   ),
-                )
-              ],
+                ],
+              ),
             ),
-          )
+          ),
         ],
       ),
     );

@@ -13,9 +13,7 @@ class AppBarWidget extends StatelessWidget {
         padding: const EdgeInsets.all(20),
         child: Column(
           children: [
-            SizedBox(
-              height: 10,
-            ),
+            SizedBox(height: 10),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -34,15 +32,12 @@ class AppBarWidget extends StatelessWidget {
                           fontWeight: FontWeight.w700,
                         ),
                       ),
-                      SizedBox(
-                        height: 10,
-                      ),
+                      SizedBox(height: 10),
                       Text(
                         'We hope you are in good mood of ordering',
                         style: TextStyle(
                           fontSize: 18,
                           color: AppTheme.colors.light,
-                          fontFamily: 'Avenir',
                           fontWeight: FontWeight.w500,
                         ),
                       ),
