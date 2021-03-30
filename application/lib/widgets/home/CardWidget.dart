@@ -5,7 +5,6 @@ import 'package:carryout/theme.dart';
 
 import 'package:carryout/utils/api.dart';
 
-import 'package:carryout/widgets/common/EmojiRatingWidget.dart';
 import 'package:carryout/widgets/common/PriceWidget.dart';
 
 import 'package:carryout/models/menuItem.dart';
@@ -62,11 +61,15 @@ class CardWidget extends StatelessWidget {
                               fontWeight: FontWeight.w700,
                             ),
                           ),
-                          // ignore: todo
-                          // TODO: Add rating service
-                          EmojiRatingWidget(
-                            rating: 4.2,
-                            reviews: 152,
+                          SizedBox(
+                            height: 5,
+                          ),
+                          Text(
+                            item.description,
+                            style: TextStyle(
+                              color: AppTheme.colors.light,
+                              fontSize: 16,
+                            ),
                           ),
                         ],
                       ),
@@ -77,14 +80,17 @@ class CardWidget extends StatelessWidget {
                     ],
                   ),
                 ),
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(width * 0.2),
-                  child: Container(
-                    width: width * 0.4,
-                    height: width * 0.4,
-                    child: Image.network(
-                      "${API.baseURL}${item.image.formats.thumbnail.url}",
-                      fit: BoxFit.cover,
+                Hero(
+                  tag: "image-${item.id}",
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(width * 0.2),
+                    child: Container(
+                      width: width * 0.4,
+                      height: width * 0.4,
+                      child: Image.network(
+                        "${API.baseURL}${item.image.formats.thumbnail.url}",
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
                 ),

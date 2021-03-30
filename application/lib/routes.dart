@@ -8,6 +8,6 @@ List<GetPage> routes = [
   GetPage(
     name: '/detail',
     page: () => DetailPage(),
-    transition: Transition.cupertino,
+    transition: Transition.topLevel,
   )
 ];

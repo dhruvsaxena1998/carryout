@@ -4,8 +4,6 @@ import 'package:get/get.dart';
 
 import 'package:carryout/theme.dart';
 
-import 'package:carryout/widgets/common/CommonAppBarWidget.dart';
-import 'package:carryout/widgets/common/EmojiRatingWidget.dart';
 import 'package:carryout/widgets/common/PriceWidget.dart';
 import 'package:carryout/widgets/common/FullWidthButtonWidget.dart';
 import 'package:carryout/widgets/detail/FoodItemWidget.dart';
@@ -25,15 +23,7 @@ class _DetailPageState extends State<DetailPage> {
   @override
   Widget build(BuildContext context) {
     final double width = MediaQuery.of(context).size.width - 30;
-    final double height = MediaQuery.of(context).size.height;
     return Scaffold(
-      appBar: CustomAppBar(
-        height: height * 0.12,
-        child: CommonAppBarWidget(
-          id: item.id,
-          name: item.name,
-        ),
-      ),
       bottomNavigationBar: Container(
         height: 50,
         margin: const EdgeInsets.all(20),
@@ -57,37 +47,80 @@ class _DetailPageState extends State<DetailPage> {
           ],
         ),
       ),
-      body: Align(
-        alignment: Alignment.center,
-        child: SingleChildScrollView(
-          physics: BouncingScrollPhysics(),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              Container(
-                width: width * 0.7,
-                height: width * 0.7,
-                margin: const EdgeInsets.only(bottom: 30, top: 20),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(width * 1.4),
-                  border: Border.all(
-                    width: 3,
-                    color: AppTheme.colors.accent,
+      body: SingleChildScrollView(
+        physics: BouncingScrollPhysics(),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            Container(
+              width: width,
+              margin: const EdgeInsets.only(top: 50),
+              padding: const EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                color: AppTheme.colors.dark,
+                borderRadius: BorderRadius.circular(25),
+                boxShadow: [
+                  BoxShadow(
+                    color: AppTheme.colors.black,
+                    blurRadius: 10,
                   ),
-                ),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(width * 1.4),
-                  child: Image.network(
-                    "${API.baseURL}${item.image.url}",
-                    fit: BoxFit.cover,
-                  ),
-                ),
+                ],
               ),
-              EmojiRatingWidget(),
-              __listBuilder(title: 'Items', list: item.compulsory),
-              __listBuilder(title: 'Optional', list: item.optional),
-            ],
-          ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Hero(
+                    tag: "image-${item.id}",
+                    child: Container(
+                      height: width,
+                      padding: const EdgeInsets.all(10),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(25),
+                        child: Image.network(
+                          "${API.baseURL}${item.image.url}",
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(10),
+                    child: Column(
+                      children: [
+                        Align(
+                          alignment: Alignment.centerRight,
+                          child: Text(
+                            item.name,
+                            style: TextStyle(
+                              color: AppTheme.colors.white,
+                              fontSize: 22,
+                              fontFamily: 'Poppins',
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                        ),
+                        Align(
+                          alignment: Alignment.centerRight,
+                          child: Text(
+                            item.description,
+                            textAlign: TextAlign.justify,
+                            style: TextStyle(
+                              color: AppTheme.colors.light,
+                              fontSize: 16,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            __listBuilder(
+                context: context, title: 'Items', list: item.compulsory),
+            __listBuilder(
+                context: context, title: 'Optional', list: item.optional),
+          ],
         ),
       ),
     );
@@ -112,6 +145,7 @@ class CustomAppBar extends PreferredSize {
 }
 
 Widget __listBuilder({
+  @required BuildContext context,
   @required String title,
   @required List list,
 }) {
@@ -133,19 +167,20 @@ Widget __listBuilder({
             ),
           ),
         ),
-        SizedBox(
-          height: 10,
-        ),
         Container(
-          child: ListView.builder(
-            shrinkWrap: true,
-            physics: NeverScrollableScrollPhysics(),
-            itemCount: list.length,
-            itemBuilder: (context, index) {
-              return FoodItemWidget(
-                item: list[index],
-              );
-            },
+          child: MediaQuery.removePadding(
+            removeTop: true,
+            context: context,
+            child: ListView.builder(
+              shrinkWrap: true,
+              physics: NeverScrollableScrollPhysics(),
+              itemCount: list.length,
+              itemBuilder: (context, index) {
+                return FoodItemWidget(
+                  item: list[index],
+                );
+              },
+            ),
           ),
         ),
       ],
