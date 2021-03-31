@@ -24,5 +24,8 @@ source ~/.bashrc
 # Install packages
 yarn install
 
+# Build
+yarn build
+
 # Start production env. in background
 pm2 start npm --name "server" -- run production

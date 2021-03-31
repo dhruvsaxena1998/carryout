@@ -27,73 +27,71 @@ class FoodItemWidget extends StatelessWidget {
           Expanded(
             flex: 2,
             child: Padding(
-              padding: EdgeInsets.all(15),
-              child: MarqueeText(
-                text: item.name,
-                style: TextStyle(
-                  color: AppTheme.colors.light,
-                  fontSize: 18,
-                  fontWeight: FontWeight.w700,
-                  fontFamily: 'Poppins',
-                  letterSpacing: 1.2,
-                ),
-                speed: 30,
-                alwaysScroll: false,
-                marqueeDirection: MarqueeDirection.rtl,
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text(
-              "₹ ${item.price} /p",
-              style: TextStyle(
-                color: AppTheme.colors.light,
-                fontFamily: 'Poppins',
-                fontWeight: FontWeight.w700,
-                fontSize: 12,
+              padding: const EdgeInsets.all(12.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  MarqueeText(
+                    text: item.name,
+                    style: TextStyle(
+                      color: AppTheme.colors.light,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w700,
+                      fontFamily: 'Poppins',
+                      letterSpacing: 1.2,
+                    ),
+                    speed: 30,
+                    alwaysScroll: false,
+                    marqueeDirection: MarqueeDirection.rtl,
+                  ),
+                  Text(
+                    "₹ ${item.price} /p",
+                    style: TextStyle(
+                      color: AppTheme.colors.accent,
+                      fontFamily: 'Poppins',
+                      fontWeight: FontWeight.w700,
+                      fontSize: 12,
+                    ),
+                  ),
+                ],
               ),
             ),
           ),
           Expanded(
-            flex: 1,
             child: Card(
               color: AppTheme.colors.black,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10),
               ),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  IconButton(
-                    icon: Icon(
-                      Icons.remove,
-                      color: AppTheme.colors.light,
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    _renderIconButton(
+                      Icon(Icons.remove, color: AppTheme.colors.white),
+                      () {},
                     ),
-                    onPressed: () {},
-                  ),
-                  Expanded(
-                    flex: 1,
-                    child: Text(
-                      "${item.defaultQty}",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: AppTheme.colors.accent,
-                        fontSize: 20,
-                        fontFamily: 'Poppins',
-                        fontWeight: FontWeight.w700,
+                    Expanded(
+                      flex: 1,
+                      child: Text(
+                        "${item.defaultQty}",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: AppTheme.colors.accent,
+                          fontSize: 20,
+                          fontFamily: 'Poppins',
+                          fontWeight: FontWeight.w700,
+                        ),
                       ),
                     ),
-                  ),
-                  IconButton(
-                    icon: Icon(
-                      Icons.add,
-                      color: AppTheme.colors.light,
+                    _renderIconButton(
+                      Icon(Icons.add, color: AppTheme.colors.white),
+                      () {},
                     ),
-                    onPressed: () {},
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),
@@ -101,4 +99,17 @@ class FoodItemWidget extends StatelessWidget {
       ),
     );
   }
+}
+
+Widget _renderIconButton(Icon icon, Function onTap) {
+  return InkWell(
+    customBorder: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(15),
+    ),
+    child: Padding(
+      padding: const EdgeInsets.all(7),
+      child: icon,
+    ),
+    onTap: onTap,
+  );
 }

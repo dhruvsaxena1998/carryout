@@ -9,7 +9,7 @@ var dio = Dio(
     baseUrl: API.baseURL,
     headers: {
       HttpHeaders.authorizationHeader:
-          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwNGNiNTY1OTc2NjdiMTIzNGUzZDY3NiIsImlhdCI6MTYxNzA0NDIzMSwiZXhwIjoxNjE5NjM2MjMxfQ.BpUlSh0iKPM5WnFQcGGH1mOPjshM_MTrK2sN6-kVaCc",
+          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwNGNiNTY1OTc2NjdiMTIzNGUzZDY3NiIsImlhdCI6MTYxNzIxNzc2OCwiZXhwIjoxNjE5ODA5NzY4fQ.xWiMe59n_rFvfLDDuzc0CBp3iLd7I7_Nj2gDeX-UXiw",
     },
   ),
 );
