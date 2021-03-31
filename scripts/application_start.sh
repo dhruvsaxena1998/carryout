@@ -1,10 +1,10 @@
 #!/bin/bash
 
 # Give permissions
-sudo chmod -R 777 /home/ec2-user/carryout/server
+sudo chmod -R 777 /home/ubuntu/carryout/server
 
 # Navigate to working directory
-cd /home/ec2-user/carryout/server
+cd /home/ubuntu/carryout/server
 
 # Add npm and node to PATH
 export NVM_DIR="$HOME/.nvm"
