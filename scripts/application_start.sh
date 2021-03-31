@@ -12,6 +12,9 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # Loads bash completion (node is available in PATH now)
 
 
+# Start MongoDB Server
+sudo systemctl start mongod
+
 # Install globall packages
 npm i -g yarn@latest pm2 serve
 
