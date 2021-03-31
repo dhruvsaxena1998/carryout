@@ -5,16 +5,18 @@
   "description": "A Strapi application",
   "scripts": {
     "develop": "strapi develop",
+    "production": "cross-env NODE_ENV=production strapi start",
     "start": "strapi start",
     "build": "strapi build",
     "strapi": "strapi"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "cross-env": "^7.0.3"
+  },
   "dependencies": {
     "strapi": "3.5.3",
     "strapi-admin": "3.5.3",
     "strapi-connector-mongoose": "3.5.3",
-    "strapi-middleware-cache": "^1.5.0",
     "strapi-plugin-content-manager": "3.5.3",
     "strapi-plugin-content-type-builder": "3.5.3",
     "strapi-plugin-email": "3.5.3",
