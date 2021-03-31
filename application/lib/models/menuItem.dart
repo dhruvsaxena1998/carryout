@@ -1,4 +1,4 @@
-import 'package:carryout/models/media/MediaImage.dart';
+import 'package:carryout/models/media/mediaImage.dart';
 
 class MenuItem {
   String name, description, id;

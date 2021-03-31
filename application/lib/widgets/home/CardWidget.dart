@@ -2,11 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:carryout/theme.dart';
-
 import 'package:carryout/utils/api.dart';
-
 import 'package:carryout/widgets/common/PriceWidget.dart';
-
 import 'package:carryout/models/menuItem.dart';
 
 class CardWidget extends StatelessWidget {

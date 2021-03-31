@@ -1,5 +1,5 @@
-import 'package:carryout/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:carryout/theme.dart';
 
 import 'package:marquee_text/marquee_direction.dart';
 import 'package:marquee_text/marquee_text.dart';
