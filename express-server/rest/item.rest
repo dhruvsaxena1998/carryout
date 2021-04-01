@@ -1,0 +1,27 @@
+@uri=http://localhost:3000/api/v1
+
+
+### GET: /items
+GET {{uri}}/items
+
+### POST: /items
+POST {{uri}}/items
+Content-Type: application/json
+
+{
+  "name": "Mix Daal",
+  "price": 20
+}
+
+### PUT: /items/:id
+PUT {{uri}}/items/6065a0990d1dea36e8b8a6cf
+Content-Type: application/json
+
+{
+  "name": "Veg Mix-Daal",
+  "price": 20,
+  "default": 1
+}
+
+### DELETE: /items/:id
+DELETE  {{uri}}/items/6065a0990d1dea36e8b8a6cf

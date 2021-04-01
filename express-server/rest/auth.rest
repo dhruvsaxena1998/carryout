@@ -1,0 +1,11 @@
+@uri=http://localhost:3000/api/v1
+
+### POST: /register
+POST {{uri}}/auth/register
+Content-Type: application/json
+
+{
+  "phone": "9829905512",
+  "email": "saxenadhruv1927@gmail.com",
+  "password": "abc123456789"
+}
