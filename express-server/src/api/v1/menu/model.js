@@ -1,4 +1,4 @@
-const { model, Schema } = require("mongoose");
+import { model, Schema } from "mongoose";
 
 const schema = Schema({
   name: String,
@@ -6,4 +6,4 @@ const schema = Schema({
   price: Number,
 });
 
-module.exports = model("Menu", schema);
+export default model("Menu", schema);

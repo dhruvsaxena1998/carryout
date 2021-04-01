@@ -1,5 +1,5 @@
-const UserModel = require("./model");
+import User from "./model";
 
-module.exports = {
+export default {
   me: async (req, res) => {},
 };

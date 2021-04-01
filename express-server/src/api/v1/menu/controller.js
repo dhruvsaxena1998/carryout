@@ -1,8 +1,8 @@
-const MenuModel = require("./model");
+import Menu from "./model";
 
-module.exports = {
+export default {
   find: async (req, res) => {
-    const entities = await MenuModel.find();
+    const entities = await Menu.find();
 
     res.status(200).send(entities);
   },

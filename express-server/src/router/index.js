@@ -1,16 +1,14 @@
 import { Router } from "express";
 const router = Router();
 
-import { getRoute } from "../utils/common";
+import AuthRoutes from "@api/v1/auth/routes";
+import MenuRoutes from "@api/v1/menu/routes";
+import ItemRoutes from "@api/v1/item/routes";
+import UserRoutes from "@api/v1/user/routes";
 
-const MenuRoutes = require(getRoute("menu"));
-const ItemRoutes = require(getRoute("item"));
-const AuthRoutes = require(getRoute("auth"));
-const UserRoutes = require(getRoute("user"));
-
-router.use("/menus", MenuRoutes);
-router.use("/items", ItemRoutes);
 router.use("/auth", AuthRoutes);
+router.use("/item", ItemRoutes);
+router.use("/menu", MenuRoutes);
 router.use("/user", UserRoutes);
 
-module.exports = router;
+export default router;

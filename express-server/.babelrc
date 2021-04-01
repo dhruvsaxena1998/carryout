@@ -1,6 +1,19 @@
 {
   "presets": ["@babel/preset-env"],
-  "ignore": [
-    "node_modules/*"
-  ]
+  "plugins": [
+    [
+      "module-resolver",
+      {
+        "root": ["./src"],
+        "alias": {
+          "@src": "./src/",
+          "@router": "./src/router/",
+          "@utils": "./src/utils/",
+          "@config": "./src/config/",
+          "@api/v1": "./src/api/v1/"
+        }
+      }
+    ]
+  ],
+  "ignore": ["node_modules/*"]
 }

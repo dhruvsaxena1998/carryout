@@ -1,11 +1,5 @@
-const speakingurl = require("speakingurl");
-const path = require("path");
+import speakingurl from "speakingurl";
 
-const APIDIR = path.join(__dirname, "../api/v1");
-module.exports.getSlug = (str) => {
+export const generateSlug = (str) => {
   return speakingurl(str);
 };
-
-module.exports.getRoute = (collection) => {
-  return `${APIDIR}/${collection}/routes`
-}

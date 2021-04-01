@@ -1,28 +1,22 @@
-const { getSlug } = require("../../../utils/common");
-const ItemModel = require("./model");
+import { generateSlug } from "@utils/common";
+import Item from "./model";
 
-module.exports = {
+export default {
   find: async (req, res) => {
-    const entities = await ItemModel.find();
-
-    res.status(200).send(entities);
+    try {
+      const entities = await Item.find();
+      res.status(200).send(entities);
+    } catch (e) {}
   },
   create: async (req, res) => {
     const body = {
       ...req.body,
-      slug: getSlug(req.body.name),
+      slug: generateSlug(req.body.name),
     };
     try {
-      const entity = await ItemModel.create(body);
-      res.send(entity);
-    } catch (e) {
-      if (e.message.includes("duplicate")) {
-        res.status(400).send({
-          message: e.message,
-          error: e,
-        });
-      }
-    }
+      const entity = await Item.create(body);
+      res.status(200).send(entity);
+    } catch (e) {}
   },
   update: async (req, res) => {
     const { id } = req.params;
@@ -30,17 +24,17 @@ module.exports = {
     // delete slug if provided
     delete req.body.slug;
     try {
-      const entity = await ItemModel.findByIdAndUpdate(id, req.body.slug, {
+      const entity = await Item.findByIdAndUpdate(id, req.body.slug, {
         new: true,
       });
-      res.send(entity);
+      res.status(200).send(entity);
     } catch (e) {}
   },
   delete: async (req, res) => {
     const { id } = req.params;
 
     try {
-      const entity = await ItemModel.findByIdAndDelete(id);
+      const entity = await Item.findByIdAndDelete(id);
       res.status(200).send(entity);
     } catch (e) {}
   },

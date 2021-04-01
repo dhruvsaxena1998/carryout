@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 const options = {
   useUnifiedTopology: true,
@@ -7,7 +7,7 @@ const options = {
   useCreateIndex: true, // DeprecationWarning: collection.ensureIndex is deprecated. Use createIndexes instead.
 };
 
-module.exports = async () => {
+export default async () => {
   try {
     await mongoose.connect(process.env.DB_URL, options);
   } catch (err) {

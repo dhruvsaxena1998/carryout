@@ -1,22 +1,19 @@
-const jwt = require("jsonwebtoken");
-const bcrypt = require("bcryptjs");
-const secret = require("../../../config/jwt");
+import * as jwt from "@utils/jsonwebtoken";
+import bcrypt from "bcryptjs";
 
-const UserModel = require("../user/model");
+import User from "@api/v1/user/model";
 
-module.exports = {
+export default {
   register: async (req, res) => {
-    const hashedPassword = bcrypt.hashSync(req.body.password, 12);
+    const password = bcrypt.hashSync(req.body.password, 12);
     const { phone, email } = req.body;
-    const user = await UserModel.create({
+    const user = await User.create({
       phone,
       email,
-      password: hashedPassword,
+      password,
     });
 
-    const token = jwt.sign({ id: user._id }, secret.jwt, {
-      expiresIn: 86400, // expires in 24 hours
-    });
+    const token = jwt.issue(user._id);
 
     res.status(200).send({
       user,

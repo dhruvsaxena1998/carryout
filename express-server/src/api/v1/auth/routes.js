@@ -1,5 +1,7 @@
-const Router = require("express").Router();
-const Controller = require("./controller");
+import { Router as _Router } from "express";
+const Router = _Router();
+
+import Controller from "./controller";
 
 /**
  * @route /
@@ -8,4 +10,4 @@ const Controller = require("./controller");
  */
 Router.post("/register", Controller.register);
 
-module.exports = Router;
+export default Router;

@@ -1,4 +1,4 @@
-const { model, Schema } = require("mongoose");
+import { model, Schema } from "mongoose";
 
 const schema = Schema({
   phone: { type: Number, unique: true },
@@ -8,4 +8,4 @@ const schema = Schema({
   resetPasswordToken: String,
 });
 
-module.exports = model("User", schema);
+export default model("User", schema);
