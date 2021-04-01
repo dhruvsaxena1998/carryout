@@ -1,0 +1,6 @@
+@uri=http://localhost:3000/api/v1
+
+### GET: /me
+GET {{uri}}/user/me
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwNjYzMzEwMDE5YzEyYjY5NGY5NDMwNyIsImlhdCI6MTYxNzMxMDQ4MSwiZXhwIjoxNjE5OTAyNDgxfQ.Fjxz6p3nZZVjzlsrIOvCbqMdvvqIDUWlPyAjhAEkOo8

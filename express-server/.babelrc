@@ -8,6 +8,7 @@
         "alias": {
           "@src": "./src/",
           "@router": "./src/router/",
+          "@middlewares": "./src/middlewares/",
           "@utils": "./src/utils/",
           "@config": "./src/config/",
           "@api/v1": "./src/api/v1/"
