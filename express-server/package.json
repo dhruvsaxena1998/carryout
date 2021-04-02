@@ -4,7 +4,8 @@
   "description": "ExpressServer for adiscarryout",
   "main": "app.js",
   "scripts": {
-    "start:dev": "nodemon"
+    "start:dev": "nodemon",
+    "create-api": "node cli/api"
   },
   "author": "saxenadhruv1927@gmail.com",
   "license": "MIT",
