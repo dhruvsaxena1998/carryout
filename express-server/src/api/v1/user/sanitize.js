@@ -1,6 +1,6 @@
-export default (user) => {
-  delete user.password;
-  delete user.__v;
+import _omit from "lodash/omit";
+const toSanitize = ["password", "__v", "resetPasswordToken"];
 
-  return user;
+export default (user) => {
+  return _omit(user, toSanitize);
 };

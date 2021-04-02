@@ -2,10 +2,10 @@ import { Router as _Router } from "express";
 const Router = _Router();
 
 // Controller
-import Controller from "./controller";
+import Controller from "../controllers";
 
 // Middlewares
-import Validator from "./validator";
+import Validator from "../services/validator";
 
 /**
  * @route /
@@ -14,7 +14,9 @@ import Validator from "./validator";
  */
 Router.post(
   "/register",
-  [Validator.register], // Middleware
+  [
+    Validator.register
+  ], // Middleware
   Controller.register // Controller
 );
 

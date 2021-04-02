@@ -4,14 +4,14 @@ const Router = _Router();
 // Controller
 import Controller from "./controller";
 
-// Middleware
-import AuthMiddleware from "@middlewares/authorization";
+// Policies / Middleware
+import isAuthorized from "@policies/isAuthorized";
 
 /**
  * @route /
- * @method POST
- * @description Register
+ * @method GET
+ * @description Get loggedin user information
  */
-Router.get("/me", [AuthMiddleware], Controller.me);
+Router.get("/me", [isAuthorized], Controller.me);
 
 export default Router;
