@@ -6,6 +6,7 @@ import Controller from "../controllers";
 
 // Policies / Middleware
 import isAuthenticated from "@src/policies/isAuthenticated";
+import Validator from "../services/validator";
 
 /**
  * @route /

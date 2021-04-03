@@ -3,6 +3,9 @@ const Router = _Router();
 
 import Controller from "../controllers";
 
+// Middleware
+import Validator from "../services/validator";
+
 /**
  * @route /
  * @method GET
@@ -15,20 +18,20 @@ Router.get("/", Controller.find);
  * @method POST
  * @description Create item
  */
-Router.post("/", Controller.create);
+Router.post("/", [Validator.create], Controller.create);
 
 /**
  * @route /:id
  * @method PUT
  * @description Update item
  */
-Router.put("/:id", Controller.update);
+Router.put("/:id", [Validator.delete], Controller.update);
 
 /**
  * @route /:id
  * @method DELETE
  * @description Delete item
  */
-Router.delete("/:id", Controller.delete);
+Router.delete("/:id", [Validator.delete], Controller.delete);
 
 export default Router;
