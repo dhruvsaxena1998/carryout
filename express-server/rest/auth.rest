@@ -1,11 +1,21 @@
-@uri=http://localhost:3000/api/v1
+@uri=http://localhost:5000/api/v1
 
-### POST: /register
+### POST: /auth/register
+POST {{uri}}/auth/login
+Content-Type: application/json
+
+{
+  "phone": "98205512",
+  "password": "abcdefghijk"
+}
+
+
+### POST: /auth/register
 POST {{uri}}/auth/register
 Content-Type: application/json
 
 {
   "phone": "9829905512",
   "email": "saxenadhruv1927@gmail.com",
-  "password": "abcdedfg1"
+  "password": "abcdefghijk"
 }

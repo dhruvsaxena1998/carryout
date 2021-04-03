@@ -7,6 +7,7 @@
       "@src/*": ["./src/*"],
       "@router/*": ["./src/router/*"],
       "@utils/*": ["./src/utils/*"],
+      "@functions/*": ["./src/functions/*"],
       "@policies/*": ["src/policies/*"],
       "@config/*": ["./src/config/*"],
       "@api/v1/*": ["./src/api/v1/*"]

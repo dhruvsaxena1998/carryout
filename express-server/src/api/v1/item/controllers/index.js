@@ -1,5 +1,5 @@
 import { generateSlug } from "@utils/common";
-import Item from "./model";
+import Item from "../model";
 
 export default {
   find: async (req, res) => {

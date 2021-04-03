@@ -1,3 +1,5 @@
+const index = async (req, res) => {},
+
 export default {
-  index: async (req, res) => {},
+  index
 };

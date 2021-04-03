@@ -8,16 +8,17 @@ import Controller from "../controllers";
 import Validator from "../services/validator";
 
 /**
- * @route /
+ * @route /auth/login
  * @method POST
  * @description Register
  */
-Router.post(
-  "/register",
-  [
-    Validator.register
-  ], // Middleware
-  Controller.register // Controller
-);
+Router.post("/login", [Validator.login], Controller.login);
+
+/**
+ * @route /auth/register
+ * @method POST
+ * @description Register
+ */
+Router.post("/register", [Validator.register], Controller.register);
 
 export default Router;

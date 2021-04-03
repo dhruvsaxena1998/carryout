@@ -1,4 +1,4 @@
-import Menu from "./model";
+import Menu from "../model";
 
 export default {
   find: async (req, res) => {

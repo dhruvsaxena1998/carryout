@@ -2,16 +2,16 @@ import { Router as _Router } from "express";
 const Router = _Router();
 
 // Controller
-import Controller from "./controller";
+import Controller from "../controllers";
 
 // Policies / Middleware
-import isAuthorized from "@policies/isAuthorized";
+import isAuthenticated from "@src/policies/isAuthenticated";
 
 /**
  * @route /
  * @method GET
  * @description Get loggedin user information
  */
-Router.get("/me", [isAuthorized], Controller.me);
+Router.get("/me", [isAuthenticated], Controller.me);
 
 export default Router;

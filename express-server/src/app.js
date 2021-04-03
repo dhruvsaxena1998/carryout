@@ -17,8 +17,7 @@ app.use("/public", express.static(publicDir));
 
 app.use("/api/v1/", router);
 
-const PORT = process.env.PORT || 3000;
-
+const PORT = process.env.PORT || 5000;
 connection().then(() => {
   app.listen(PORT, (err) => {
     if (err) {

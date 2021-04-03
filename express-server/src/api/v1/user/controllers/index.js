@@ -1,5 +1,5 @@
-import User from "./model";
-import sanitize from "./sanitize";
+import User from "../models";
+import sanitize from "../services/sanitize";
 
 export default {
   me: async (req, res) => {

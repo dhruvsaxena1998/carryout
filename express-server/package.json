@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "start:dev": "nodemon",
-    "create-api": "node cli/api"
+    "create:api": "node cli/api.js"
   },
   "author": "saxenadhruv1927@gmail.com",
   "license": "MIT",

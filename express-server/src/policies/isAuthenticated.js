@@ -10,10 +10,10 @@ export default (req, res, next) => {
 
   try {
     const [, token] = authorization.split("Bearer ");
-    const isAuthorized = jwt.verify(token);
+    const isAuthenticated = jwt.verify(token);
 
     // Setting user-id to res.locals
-    res.locals.user = isAuthorized.id;
+    res.locals.user = isAuthenticated.id;
     next();
   } catch (e) {
     return res.status(401).send({

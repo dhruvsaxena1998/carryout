@@ -3,13 +3,15 @@ const path = require("path");
 
 const [, , name, version = "v1"] = process.argv;
 const dir = path.join(__dirname, `../src/api/${version}`);
+const capitalize = (apiName) => apiName.charAt(0).toUpperCase() + apiName.slice(1)
 
 const pathdir = dir + `/${name}`;
 
 const templates = {
   routes: fs.readFileSync(path.join(__dirname, "./templates/routes.js")),
+  model: fs.readFileSync(path.join(__dirname, "./templates/model.js"), 'utf-8'),
   controller: fs.readFileSync(
-    path.join(__dirname, "./templates/controller.js")
+    path.join(__dirname, "./templates/controller.js"),
   ),
 };
 
@@ -37,6 +39,20 @@ fs.mkdirSync(`${pathdir}/controllers`, (err) => {
 fs.writeFileSync(
   `${pathdir}/controllers/index.js`,
   templates.controller,
+  "utf-8"
+);
+
+// Model
+fs.mkdirSync(`${pathdir}/model`, (err) => {
+  if (err) {
+    console.log(err);
+    throw err;
+  }
+});
+
+fs.writeFileSync(
+  `${pathdir}/model/index.js`,
+  templates.model.replace(/#model#/, capitalize(name)),
   "utf-8"
 );
 
