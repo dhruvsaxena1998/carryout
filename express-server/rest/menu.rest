@@ -1,0 +1,20 @@
+@uri=http://localhost:5000/api/v1
+
+### GET: /menu
+GET {{uri}}/menu?populate=true
+
+### POST: /item
+POST {{uri}}/menu
+Content-Type: application/json
+
+{
+  "name": "Mix veg Daal",
+  "description": "mix veg daal with chapatis",
+  "price": 64,
+  "optional": [
+    "6068ad7d5302d18a806c6fce"
+  ],
+  "default": [
+    "6068ad7d5302d18a806c6fce"
+  ]
+}
