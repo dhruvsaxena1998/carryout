@@ -12,8 +12,8 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-const publicDir = path.join(__dirname, "public");
-app.use("/public", express.static(publicDir));
+app.use("/public", express.static("public/"));
+app.use("/uploads", express.static("public/uploads/"));
 
 app.use("/api/v1/", router);
 
