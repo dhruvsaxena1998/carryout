@@ -1,12 +1,9 @@
 <template>
-  <q-layout
-    view="hHh Lpr lff"
-    class="shadow-2 q-pa-md"
-  >
-    <q-header elevated class="bg-black">
+  <q-layout view="hHh Lpr lff" class="shadow-2 q-pa-md">
+    <q-header elevated class="bg-red-5">
       <q-toolbar>
         <q-btn flat @click="drawer = !drawer" round dense icon="menu" />
-        <q-toolbar-title>Header</q-toolbar-title>
+        <q-toolbar-title>Adi's Carryout</q-toolbar-title>
       </q-toolbar>
     </q-header>
 

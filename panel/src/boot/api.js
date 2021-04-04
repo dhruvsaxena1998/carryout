@@ -20,14 +20,24 @@ const SuccessNotification = (message) => {
 };
 
 const services = {
-  addItem: async (body) => {
-    try {
-      const { data } = await api.post("/item", body);
-      SuccessNotification("Item has been saved successfully");
-      return data;
-    } catch (err) {
-      ErrorNotification(err.message);
-    }
+  item: {
+    addItem: async (body) => {
+      try {
+        const { data } = await api.post("/item", body);
+        SuccessNotification("Item has been saved successfully");
+        return data;
+      } catch (err) {
+        ErrorNotification(err.message);
+      }
+    },
+    allItems: async () => {
+      try {
+        const { data } = await api.get("/item");
+        return data;
+      } catch (err) {
+        ErrorNotification(err.message);
+      }
+    },
   },
 };
 export default boot(({ app }) => {

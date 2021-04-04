@@ -1,12 +1,11 @@
 <template>
   <q-expansion-item
+    class="overflow-hidden"
     label="Add Item"
     expand-separator
     caption="Add new item"
     header-class="bg-grey-4"
-    class="overflow-hidden"
-    style="border-radius: 6px"
-  >
+    style="border-radius: 6px">
     <q-card class="q-pa-md bg-grey-3" flat>
       <q-form class="row q-col-gutter-md" @submit="handleSubmit">
         <div class="col-md-3 col-12" v-for="field in fields" :key="field.name">
@@ -22,9 +21,9 @@
         </div>
         <div class="col-md-3 col-12 offset-md-9">
           <q-btn
+            class="full-width"
             type="submit"
             label="Add"
-            class="full-width"
             unelevated
             color="primary"
           />
@@ -65,7 +64,7 @@ export default defineComponent({
     });
 
     const handleSubmit = async () => {
-      await services.addItem(item);
+      await services.item.addItem(item);
     };
     return {
       item,
