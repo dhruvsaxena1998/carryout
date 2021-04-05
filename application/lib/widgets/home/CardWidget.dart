@@ -4,10 +4,10 @@ import 'package:get/get.dart';
 import 'package:carryout/theme.dart';
 import 'package:carryout/utils/api.dart';
 import 'package:carryout/widgets/common/PriceWidget.dart';
-import 'package:carryout/models/menuItem.dart';
+import 'package:carryout/models/Menu.dart';
 
 class CardWidget extends StatelessWidget {
-  final MenuItem item;
+  final Menu item;
 
   const CardWidget({Key key, this.item}) : super(key: key);
 
@@ -81,7 +81,7 @@ class CardWidget extends StatelessWidget {
                     width: width * 0.4,
                     height: width * 0.4,
                     child: Image.network(
-                      "${API.baseURL}${item.image.formats.thumbnail.url}",
+                      "${API.public}${item.image.url}",
                       fit: BoxFit.cover,
                     ),
                   ),

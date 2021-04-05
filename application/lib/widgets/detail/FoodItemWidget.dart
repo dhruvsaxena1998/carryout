@@ -4,7 +4,7 @@ import 'package:carryout/theme.dart';
 import 'package:marquee_text/marquee_direction.dart';
 import 'package:marquee_text/marquee_text.dart';
 
-import 'package:carryout/models/menuItem.dart';
+import 'package:carryout/models/Item.dart';
 
 class FoodItemWidget extends StatelessWidget {
   final Item item;
@@ -76,7 +76,7 @@ class FoodItemWidget extends StatelessWidget {
                     Expanded(
                       flex: 1,
                       child: Text(
-                        "${item.defaultQty}",
+                        "${item.defaults}",
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           color: AppTheme.colors.accent,

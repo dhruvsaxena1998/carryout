@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 
 import 'package:carryout/theme.dart';
 import 'package:carryout/utils/api.dart';
-import 'package:carryout/models/menuItem.dart';
+import 'package:carryout/models/Menu.dart';
 
 class ImageCardWidget extends StatelessWidget {
-  final MenuItem item;
+  final Menu item;
   const ImageCardWidget({Key key, @required this.item}) : super(key: key);
 
   @override
@@ -32,7 +32,7 @@ class ImageCardWidget extends StatelessWidget {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(25),
                   child: Image.network(
-                    "${API.baseURL}${item.image.url}",
+                    "${API.public}${item.image.url}",
                     fit: BoxFit.cover,
                   ),
                 ),

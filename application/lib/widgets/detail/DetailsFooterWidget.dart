@@ -3,7 +3,7 @@ import 'package:carryout/widgets/common/PriceWidget.dart';
 import 'package:flutter/material.dart';
 
 class DetailsFooterWidget extends StatelessWidget {
-  final double price;
+  final num price;
   const DetailsFooterWidget({Key key, @required this.price}) : super(key: key);
 
   @override

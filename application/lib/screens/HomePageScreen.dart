@@ -1,13 +1,12 @@
-import 'package:flutter/material.dart';
-
 import 'package:carryout/utils/api.dart';
-import 'package:carryout/utils/strapi.dart';
+import 'package:flutter/material.dart';
+import 'package:carryout/utils/server.dart';
 
 import 'package:carryout/widgets/home/HomeAppBarWidget.dart';
 import 'package:carryout/widgets/home/CardWidget.dart';
 import 'package:carryout/widgets/common/StateWidget.dart';
 
-import 'package:carryout/models/menuItem.dart';
+import 'package:carryout/models/Menu.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key key}) : super(key: key);
@@ -20,13 +19,13 @@ class HomePage extends StatelessWidget {
           children: <Widget>[
             AppBarWidget(
               username: 'Dhruv',
-              img: "${API.baseURL}/uploads/avatar_cc865a4043.png",
+              img: "${API.public}/uploads/qdjtvya-utvj99aa.jpg",
             ),
             SizedBox(
               height: 15,
             ),
             FutureBuilder(
-              future: Strapi.find('menus'),
+              future: Server.find('menu', qs: {'populate': true}),
               builder: __menuItemsBuilder,
             ),
           ],
@@ -49,10 +48,11 @@ Widget __menuItemsBuilder(BuildContext context, AsyncSnapshot snapshot) {
     return NothingBlobWidget();
   }
 
-  List<MenuItem> items = [];
+  List<Menu> items = [];
   snapshot.data.forEach((item) {
-    items.add(new MenuItem.fromJson(item));
+    items.add(new Menu.fromJson(item));
   });
+
   return Expanded(
     child: MediaQuery.removePadding(
       removeTop: true,

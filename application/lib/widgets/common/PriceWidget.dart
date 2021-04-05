@@ -2,7 +2,7 @@ import 'package:carryout/theme.dart';
 import 'package:flutter/material.dart';
 
 class PriceWidget extends StatelessWidget {
-  final double price;
+  final num price;
 
   const PriceWidget({Key key, @required this.price}) : super(key: key);
 

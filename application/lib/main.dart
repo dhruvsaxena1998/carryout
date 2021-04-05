@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
       ),
     );
     return GetMaterialApp(
-      title: 'Flutter Demo',
+      title: 'AdisCarryout',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,

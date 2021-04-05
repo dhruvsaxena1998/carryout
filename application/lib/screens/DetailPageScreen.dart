@@ -7,7 +7,7 @@ import 'package:carryout/theme.dart';
 import 'package:carryout/widgets/detail/ImageCardWidget.dart';
 import 'package:carryout/widgets/detail/FoodItemWidget.dart';
 
-import 'package:carryout/models/menuItem.dart';
+import 'package:carryout/models/Menu.dart';
 
 class DetailPage extends StatefulWidget {
   DetailPage({Key key}) : super(key: key);
@@ -17,7 +17,7 @@ class DetailPage extends StatefulWidget {
 }
 
 class _DetailPageState extends State<DetailPage> {
-  final MenuItem item = Get.arguments;
+  final Menu item = Get.arguments;
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +32,7 @@ class _DetailPageState extends State<DetailPage> {
             _listBuilder(
               context: context,
               title: 'Items',
-              list: item.compulsory,
+              list: item.defaults,
             ),
             _listBuilder(
               context: context,
