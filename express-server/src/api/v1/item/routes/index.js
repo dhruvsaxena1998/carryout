@@ -7,31 +7,31 @@ import Controller from "../controllers";
 import Validator from "../services/validator";
 
 /**
- * @route /
+ * @route /item
  * @method GET
  * @description Get all items
  */
 Router.get("/", Controller.find);
 
 /**
- * @route /
+ * @route /item
  * @method POST
  * @description Create item
  */
 Router.post("/", [Validator.create], Controller.create);
 
 /**
- * @route /:id
+ * @route /item/:id
  * @method PUT
  * @description Update item
  */
-Router.put("/:id", [Validator.delete], Controller.update);
+Router.put("/:id", [Validator.exists, Validator.update], Controller.update);
 
 /**
- * @route /:id
+ * @route /item/:id
  * @method DELETE
  * @description Delete item
  */
-Router.delete("/:id", [Validator.delete], Controller.delete);
+Router.delete("/:id", [Validator.exists, Validator.delete], Controller.delete);
 
 export default Router;
