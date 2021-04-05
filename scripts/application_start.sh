@@ -1,10 +1,10 @@
 #!/bin/bash
 
 # Give permissions
-sudo chmod -R 777 /home/ubuntu/carryout/server
+sudo chmod -R 777 /home/ubuntu/carryout/express-server
 
 # Navigate to working directory
-cd /home/ubuntu/carryout/server
+cd /home/ubuntu/carryout/express-server
 
 # Add npm and node to PATH
 export NVM_DIR="$HOME/.nvm"
@@ -26,6 +26,6 @@ yarn install
 
 # Build
 yarn build
-
+pm2 stop server
 # Start production env. in background
-pm2 start npm --name "server" -- run production
+pm2 start npm --name "express" -- run start:dev
