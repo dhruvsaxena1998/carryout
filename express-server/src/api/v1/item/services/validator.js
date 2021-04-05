@@ -1,5 +1,6 @@
 import { body, param } from "express-validator";
 import concat from "lodash/concat";
+import Item from "../model";
 
 const common = [
   body("name", "Name is required").exists().isString(),
@@ -17,12 +18,13 @@ const create = concat(common, [
     .withMessage("Default value can always be a number"),
 ]);
 
-const update = concat(common, [
-  param("id", "ID is required")
-    .exists()
-    .isMongoId()
-    .withMessage("Invalid format"),
-]);
+const exists = [
+  param("id").custom(async (value) => {
+    return Item.findById(value).then((item) => {
+      if (!item) ErrorGenerator({ code: 404, message: "Menu not found!" });
+    });
+  }),
+];
 
 const del = [
   param("id", "ID is required")
@@ -30,9 +32,11 @@ const del = [
     .isMongoId()
     .withMessage("Invalid format"),
 ];
+const update = concat(common, del);
 
 export default {
   create,
   update,
+  exists,
   delete: del,
 };
