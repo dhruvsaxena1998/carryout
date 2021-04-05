@@ -9,37 +9,53 @@ import 'package:carryout/widgets/detail/FoodItemWidget.dart';
 
 import 'package:carryout/models/Menu.dart';
 
-class DetailPage extends StatefulWidget {
-  DetailPage({Key key}) : super(key: key);
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:carryout/screens/Detail/cubit/detail_cubit.dart';
+
+class DetailPageScreen extends StatelessWidget {
+  const DetailPageScreen({Key key}) : super(key: key);
 
   @override
-  _DetailPageState createState() => _DetailPageState();
+  Widget build(BuildContext context) {
+    return BlocProvider<DetailCubit>(
+      create: (context) => DetailCubit(),
+      child: Container(
+        child: _DetailPage(),
+      ),
+    );
+  }
 }
 
-class _DetailPageState extends State<DetailPage> {
+class _DetailPage extends StatelessWidget {
   final Menu item = Get.arguments;
 
   @override
   Widget build(BuildContext context) {
+    BlocProvider.of<DetailCubit>(context)
+        .init(defaults: item.defaults, optional: item.optional);
     return Scaffold(
       bottomNavigationBar: DetailsFooterWidget(price: item.price),
       body: SingleChildScrollView(
         physics: BouncingScrollPhysics(),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            ImageCardWidget(item: item),
-            _listBuilder(
-              context: context,
-              title: 'Items',
-              list: item.defaults,
-            ),
-            _listBuilder(
-              context: context,
-              title: 'Optional',
-              list: item.optional,
-            ),
-          ],
+        child: BlocBuilder<DetailCubit, DetailState>(
+          builder: (context, state) {
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                ImageCardWidget(item: item),
+                _listBuilder(
+                  context: context,
+                  title: 'Items',
+                  list: state.defaults,
+                ),
+                _listBuilder(
+                  context: context,
+                  title: 'Optional',
+                  list: state.optional,
+                ),
+              ],
+            );
+          },
         ),
       ),
     );
@@ -80,6 +96,8 @@ Widget _listBuilder({
               itemBuilder: (context, index) {
                 return FoodItemWidget(
                   item: list[index],
+                  index: index,
+                  title: title,
                 );
               },
             ),

@@ -7,7 +7,7 @@ List<GetPage> routes = [
   GetPage(name: '/home', page: () => HomePage()),
   GetPage(
     name: '/detail',
-    page: () => DetailPage(),
+    page: () => DetailPageScreen(),
     transition: Transition.topLevel,
   )
 ];

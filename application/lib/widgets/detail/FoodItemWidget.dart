@@ -6,13 +6,16 @@ import 'package:marquee_text/marquee_text.dart';
 
 import 'package:carryout/models/Item.dart';
 
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:carryout/screens/Detail/cubit/detail_cubit.dart';
+
 class FoodItemWidget extends StatelessWidget {
   final Item item;
+  final String title;
+  final num index;
 
-  const FoodItemWidget({
-    Key key,
-    this.item,
-  }) : super(key: key);
+  const FoodItemWidget({Key key, this.item, this.index, this.title})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -71,7 +74,13 @@ class FoodItemWidget extends StatelessWidget {
                   children: [
                     _renderIconButton(
                       Icon(Icons.remove, color: AppTheme.colors.white),
-                      () {},
+                      () {
+                        BlocProvider.of<DetailCubit>(context).handleIncrement(
+                          title: title,
+                          index: index,
+                          status: 'sub',
+                        );
+                      },
                     ),
                     Expanded(
                       flex: 1,
@@ -88,7 +97,13 @@ class FoodItemWidget extends StatelessWidget {
                     ),
                     _renderIconButton(
                       Icon(Icons.add, color: AppTheme.colors.white),
-                      () {},
+                      () {
+                        BlocProvider.of<DetailCubit>(context).handleIncrement(
+                          title: title,
+                          index: index,
+                          status: 'add',
+                        );
+                      },
                     ),
                   ],
                 ),
