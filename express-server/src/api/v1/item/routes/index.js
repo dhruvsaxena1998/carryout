@@ -18,7 +18,7 @@ Router.get("/", Controller.find);
  * @method POST
  * @description Create item
  */
-Router.post("/", [Validator.create], Controller.create);
+Router.post("/", [Validator.duplicate, Validator.create], Controller.create);
 
 /**
  * @route /item/:id

@@ -25,6 +25,7 @@ const create = async (req, res) => {
     const body = {
       ...req.body,
       slug: generateSlug(req.body.name),
+      current: req.body.default
     };
 
     const entity = await Item.create(body);
