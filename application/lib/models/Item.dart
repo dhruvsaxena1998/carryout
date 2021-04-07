@@ -1,3 +1,5 @@
+enum BtnActions { increment, decrement }
+
 class Item {
   num max, defaults, price;
   String id, name, slug;

@@ -11,14 +11,15 @@ import 'package:carryout/screens/Detail/cubit/detail_cubit.dart';
 
 class FoodItemWidget extends StatelessWidget {
   final Item item;
-  final String title;
-  final num index;
-
-  const FoodItemWidget({Key key, this.item, this.index, this.title})
-      : super(key: key);
+  final String slug;
+  const FoodItemWidget({Key key, this.item, this.slug}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    void handleChange(BtnActions action) {
+      context.read<DetailCubit>().change(item.id, action: action, slug: slug);
+    }
+
     return Card(
       margin: const EdgeInsets.symmetric(vertical: 7),
       color: AppTheme.colors.dark,
@@ -75,11 +76,7 @@ class FoodItemWidget extends StatelessWidget {
                     _renderIconButton(
                       Icon(Icons.remove, color: AppTheme.colors.white),
                       () {
-                        BlocProvider.of<DetailCubit>(context).handleIncrement(
-                          title: title,
-                          index: index,
-                          status: 'sub',
-                        );
+                        handleChange(BtnActions.decrement);
                       },
                     ),
                     Expanded(
@@ -98,11 +95,7 @@ class FoodItemWidget extends StatelessWidget {
                     _renderIconButton(
                       Icon(Icons.add, color: AppTheme.colors.white),
                       () {
-                        BlocProvider.of<DetailCubit>(context).handleIncrement(
-                          title: title,
-                          index: index,
-                          status: 'add',
-                        );
+                        handleChange(BtnActions.increment);
                       },
                     ),
                   ],

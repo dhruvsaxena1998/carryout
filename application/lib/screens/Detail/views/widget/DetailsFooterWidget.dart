@@ -21,12 +21,9 @@ class DetailsFooterWidget extends StatelessWidget {
               child: FullWidthButtonWidget(title: 'Checkout'),
             ),
           ),
-          Expanded(
-            flex: 1,
-            child: Padding(
-              padding: const EdgeInsets.only(left: 5),
-              child: PriceWidget(price: price),
-            ),
+          Padding(
+            padding: const EdgeInsets.only(left: 5),
+            child: PriceWidget(price: price),
           ),
         ],
       ),
