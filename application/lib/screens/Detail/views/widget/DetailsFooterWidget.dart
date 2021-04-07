@@ -1,6 +1,10 @@
+import 'package:flutter/material.dart';
+
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:carryout/screens/Detail/cubit/detail_cubit.dart';
+
 import 'package:carryout/widgets/common/FullWidthButtonWidget.dart';
 import 'package:carryout/widgets/common/PriceWidget.dart';
-import 'package:flutter/material.dart';
 
 class DetailsFooterWidget extends StatelessWidget {
   final num price;
@@ -21,11 +25,12 @@ class DetailsFooterWidget extends StatelessWidget {
               child: FullWidthButtonWidget(title: 'Checkout'),
             ),
           ),
-          Expanded(
-            flex: 1,
-            child: Padding(
-              padding: const EdgeInsets.only(left: 5),
-              child: PriceWidget(price: price),
+          Padding(
+            padding: const EdgeInsets.only(left: 5),
+            child: BlocBuilder<DetailCubit, DetailState>(
+              builder: (context, state) {
+                return PriceWidget(price: state.item.price);
+              },
             ),
           ),
         ],

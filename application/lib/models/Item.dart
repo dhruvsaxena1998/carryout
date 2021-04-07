@@ -1,5 +1,5 @@
 class Item {
-  num max, defaults, price;
+  num max, defaults, current, price;
   String id, name, slug;
 
   Item({
@@ -9,6 +9,7 @@ class Item {
     this.name,
     this.slug,
     this.price,
+    this.current,
   });
 
   Item.fromJson(Map<String, dynamic> json) {
@@ -18,6 +19,7 @@ class Item {
     name = json['name'];
     price = json['price'];
     slug = json['slug'];
+    current = json['current'];
   }
 
   Map<String, dynamic> toJson() {

@@ -1,8 +1,7 @@
 part of 'detail_cubit.dart';
 
 class DetailState {
-  List<Item> defaults;
-  List<Item> optional;
+  Menu item;
 
-  DetailState({@required this.defaults, @required this.optional});
+  DetailState({@required this.item});
 }

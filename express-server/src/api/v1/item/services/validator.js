@@ -1,4 +1,6 @@
 import { body, param } from "express-validator";
+import { generateSlug } from "@utils/common";
+import ErrorGenerator from "@functions/error";
 import concat from "lodash/concat";
 import Item from "../model";
 
@@ -17,6 +19,16 @@ const create = concat(common, [
     .isNumeric()
     .withMessage("Default value can always be a number"),
 ]);
+
+const duplicate = [
+  body("name").custom(async (value) => {
+    const slug = generateSlug(value);
+
+    return Item.findOne({ slug }).then((item) => {
+      if (item) ErrorGenerator({ code: 409, message: "Duplicate Entry" });
+    });
+  }),
+];
 
 const exists = [
   param("id").custom(async (value) => {
@@ -38,5 +50,6 @@ export default {
   create,
   update,
   exists,
+  duplicate,
   delete: del,
 };
