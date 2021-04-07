@@ -5,19 +5,26 @@ import 'package:marquee_text/marquee_direction.dart';
 import 'package:marquee_text/marquee_text.dart';
 
 import 'package:carryout/models/Item.dart';
+import 'package:carryout/types/enum.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:carryout/screens/Detail/cubit/detail_cubit.dart';
 
 class FoodItemWidget extends StatelessWidget {
   final Item item;
-  final String slug;
-  const FoodItemWidget({Key key, this.item, this.slug}) : super(key: key);
+  final EnumListSlugs slug;
+  final int index;
+  const FoodItemWidget({
+    Key key,
+    this.item,
+    this.slug,
+    this.index,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    void handleChange(BtnActions action) {
-      context.read<DetailCubit>().change(item.id, action: action, slug: slug);
+    void handleChange(EnumBtnActions action) {
+      context.read<DetailCubit>().change(index, action: action, slug: slug);
     }
 
     return Card(
@@ -76,7 +83,7 @@ class FoodItemWidget extends StatelessWidget {
                     _renderIconButton(
                       Icon(Icons.remove, color: AppTheme.colors.white),
                       () {
-                        handleChange(BtnActions.decrement);
+                        handleChange(EnumBtnActions.decrement);
                       },
                     ),
                     Expanded(
@@ -95,7 +102,7 @@ class FoodItemWidget extends StatelessWidget {
                     _renderIconButton(
                       Icon(Icons.add, color: AppTheme.colors.white),
                       () {
-                        handleChange(BtnActions.increment);
+                        handleChange(EnumBtnActions.increment);
                       },
                     ),
                   ],

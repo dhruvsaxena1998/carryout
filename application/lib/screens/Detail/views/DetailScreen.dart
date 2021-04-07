@@ -10,6 +10,7 @@ import 'package:carryout/screens/Detail/views/widget/ImageCardWidget.dart';
 import 'package:carryout/screens/Detail/views/widget/FoodItemWidget.dart';
 import 'package:carryout/screens/Detail/views/widget/DetailsFooterWidget.dart';
 
+import 'package:carryout/types/enum.dart';
 import 'package:carryout/models/Menu.dart';
 
 class DetailPageScreen extends StatelessWidget {
@@ -47,13 +48,13 @@ class _DetailPage extends StatelessWidget {
                     _listBuilder(
                       context: context,
                       title: 'Items',
-                      slug: 'defaults',
+                      slug: EnumListSlugs.defaults,
                       list: state.item.defaults,
                     ),
                     _listBuilder(
                       context: context,
                       title: 'Optional',
-                      slug: 'optional',
+                      slug: EnumListSlugs.optional,
                       list: state.item.optional,
                     )
                   ]);
@@ -70,7 +71,7 @@ class _DetailPage extends StatelessWidget {
 Widget _listBuilder({
   @required BuildContext context,
   @required String title,
-  @required String slug,
+  @required EnumListSlugs slug,
   @required List list,
 }) {
   return Container(
@@ -101,7 +102,11 @@ Widget _listBuilder({
               physics: NeverScrollableScrollPhysics(),
               itemCount: list.length,
               itemBuilder: (context, index) {
-                return FoodItemWidget(item: list[index], slug: slug);
+                return FoodItemWidget(
+                  item: list[index],
+                  slug: slug,
+                  index: index,
+                );
               },
             ),
           ),

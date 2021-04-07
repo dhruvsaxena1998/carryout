@@ -1,8 +1,10 @@
 import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
-import 'package:carryout/models/Item.dart';
 import 'package:meta/meta.dart';
+
+import 'package:carryout/types/enum.dart';
+import 'package:carryout/models/Item.dart';
 import 'package:carryout/models/Menu.dart';
 
 part 'detail_state.dart';
@@ -15,20 +17,24 @@ class DetailCubit extends Cubit<DetailState> {
     emit(DetailState(item: item));
   }
 
+  // num _handlePrice(Menu item) {
+  //   List list = new List.from(item.defaults)..addAll(item.optional);
+  // }
+
   void change(
-    String id, {
-    @required BtnActions action,
-    @required String slug,
+    int index, {
+    @required EnumBtnActions action,
+    @required EnumListSlugs slug,
   }) {
     var prevState = DetailState(item: state.item);
 
-    List<Item> items =
-        slug == 'defaults' ? prevState.item.defaults : state.item.optional;
+    List<Item> items = slug == EnumListSlugs.defaults
+        ? prevState.item.defaults
+        : state.item.optional;
 
-    int index = items.indexWhere((el) => el.id == id);
     Item item = items[index];
 
-    if (action == BtnActions.increment)
+    if (action == EnumBtnActions.increment)
       item.defaults =
           item.defaults + 1 >= item.max ? item.max : item.defaults + 1;
     else
@@ -37,10 +43,12 @@ class DetailCubit extends Cubit<DetailState> {
     // Set updated item back to it's list
     items[index] = item;
 
-    if (slug == 'defaults')
+    if (slug == EnumListSlugs.defaults)
       prevState.item.defaults = items;
     else
       prevState.item.optional = items;
+
+    // prevState.item.price = this._handlePrice(prevState.item);
 
     // emit updated state
     emit(DetailState(item: prevState.item));
