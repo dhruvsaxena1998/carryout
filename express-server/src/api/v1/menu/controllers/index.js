@@ -10,7 +10,7 @@ const find = async (req, res) => {
   if (!populate) {
     entities = await Menu.find();
   } else {
-    entities = await Menu.find().populate("default").populate("optional");
+    entities = await Menu.find().populate("items").populate("optional");
   }
   res.status(200).send(entities);
 };
