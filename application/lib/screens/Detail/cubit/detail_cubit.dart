@@ -17,10 +17,6 @@ class DetailCubit extends Cubit<DetailState> {
     emit(DetailState(item: item));
   }
 
-  // num _handlePrice(Menu item) {
-  //   List list = new List.from(item.defaults)..addAll(item.optional);
-  // }
-
   void change(
     int index, {
     @required EnumBtnActions action,
