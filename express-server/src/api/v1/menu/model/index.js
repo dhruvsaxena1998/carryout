@@ -12,7 +12,7 @@ const schema = Schema({
   description: String,
   price: Number,
   image: Object,
-  default: ItemRef,
+  items: ItemRef,
   optional: ItemRef,
 });
 
