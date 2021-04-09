@@ -5,7 +5,7 @@ class Menu {
   String id, name, description;
   num price;
   MediaImage image;
-  List<Item> defaults, optional;
+  List<Item> items, optional;
 
   Menu.fromJson(Map<String, dynamic> json) {
     id = json['_id'];
@@ -17,11 +17,11 @@ class Menu {
       image = new MediaImage.fromJson(json['image']);
     }
 
-    if (json['default'] != null) {
-      defaults = <Item>[];
+    if (json['items'] != null) {
+      items = <Item>[];
 
-      json['default'].forEach((item) {
-        defaults.add(new Item.fromJson(item));
+      json['items'].forEach((item) {
+        items.add(new Item.fromJson(item));
       });
     }
 
@@ -45,8 +45,8 @@ class Menu {
       data['image'] = this.image.toJson();
     }
 
-    if (this.defaults != null) {
-      data['default'] = this.defaults.map((v) => v.toJson()).toList();
+    if (this.items != null) {
+      data['items'] = this.items.map((v) => v.toJson()).toList();
     }
     if (this.optional != null) {
       data['optional'] = this.optional.map((v) => v.toJson()).toList();

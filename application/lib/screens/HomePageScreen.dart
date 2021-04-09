@@ -19,7 +19,7 @@ class HomePage extends StatelessWidget {
           children: <Widget>[
             AppBarWidget(
               username: 'Dhruv',
-              img: "${API.public}/uploads/qdjtvya-utvj99aa.jpg",
+              img: "${API.public}/uploads/avatar.jpg",
             ),
             SizedBox(
               height: 15,

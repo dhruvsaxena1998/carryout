@@ -2,6 +2,7 @@ part of 'detail_cubit.dart';
 
 class DetailState {
   Menu item;
+  Menu ogState;
 
-  DetailState({@required this.item});
+  DetailState({this.item, this.ogState});
 }

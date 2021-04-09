@@ -54,7 +54,10 @@ class AppBarWidget extends StatelessWidget {
                     child: Container(
                       height: 70,
                       width: 70,
-                      child: Image.network(img),
+                      child: Image.network(
+                        img,
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
                 ),

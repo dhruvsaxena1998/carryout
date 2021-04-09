@@ -1,2 +1,2 @@
 enum EnumBtnActions { increment, decrement }
-enum EnumListSlugs { defaults, optional }
+enum EnumListSlugs { items, optional }

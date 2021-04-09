@@ -89,7 +89,7 @@ class FoodItemWidget extends StatelessWidget {
                     Expanded(
                       flex: 1,
                       child: Text(
-                        "${item.defaults}",
+                        "${item.current}",
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           color: AppTheme.colors.accent,

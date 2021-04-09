@@ -47,13 +47,11 @@ class _DetailPage extends StatelessWidget {
                   return Column(children: [
                     _listBuilder(
                       context: context,
-                      title: 'Items',
-                      slug: EnumListSlugs.defaults,
-                      list: state.item.defaults,
+                      slug: EnumListSlugs.items,
+                      list: state.item.items,
                     ),
                     _listBuilder(
                       context: context,
-                      title: 'Optional',
                       slug: EnumListSlugs.optional,
                       list: state.item.optional,
                     )
@@ -70,7 +68,6 @@ class _DetailPage extends StatelessWidget {
 
 Widget _listBuilder({
   @required BuildContext context,
-  @required String title,
   @required EnumListSlugs slug,
   @required List list,
 }) {
@@ -82,7 +79,7 @@ Widget _listBuilder({
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 5),
           child: Text(
-            title,
+            slug == EnumListSlugs.items ? 'Items' : 'Optionals',
             style: TextStyle(
               fontSize: 20,
               color: AppTheme.colors.accent,
