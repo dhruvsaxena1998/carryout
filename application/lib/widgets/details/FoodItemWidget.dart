@@ -1,14 +1,13 @@
+import 'package:carryout/controllers/DetailController.dart';
 import 'package:flutter/material.dart';
 import 'package:carryout/theme.dart';
+import 'package:get/get.dart';
 
 import 'package:marquee_text/marquee_direction.dart';
 import 'package:marquee_text/marquee_text.dart';
 
 import 'package:carryout/models/Item.dart';
 import 'package:carryout/types/enum.dart';
-
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:carryout/screens/Detail/cubit/detail_cubit.dart';
 
 class FoodItemWidget extends StatelessWidget {
   final Item item;
@@ -24,7 +23,7 @@ class FoodItemWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     void handleChange(EnumBtnActions action) {
-      context.read<DetailCubit>().change(index, action: action, slug: slug);
+      Get.find<DetailController>().change(index, action: action, slug: slug);
     }
 
     return Card(

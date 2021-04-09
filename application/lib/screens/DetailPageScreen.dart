@@ -3,36 +3,22 @@ import 'package:get/get.dart';
 
 import 'package:carryout/theme.dart';
 
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:carryout/screens/Detail/cubit/detail_cubit.dart';
+import 'package:carryout/widgets/details/ImageCardWidget.dart';
+import 'package:carryout/widgets/details/FoodItemWidget.dart';
+import 'package:carryout/widgets/details/DetailsFooterWidget.dart';
 
-import 'package:carryout/screens/Detail/views/widget/ImageCardWidget.dart';
-import 'package:carryout/screens/Detail/views/widget/FoodItemWidget.dart';
-import 'package:carryout/screens/Detail/views/widget/DetailsFooterWidget.dart';
+import 'package:carryout/controllers/DetailController.dart';
 
 import 'package:carryout/types/enum.dart';
 import 'package:carryout/models/Menu.dart';
 
 class DetailPageScreen extends StatelessWidget {
-  const DetailPageScreen({Key key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocProvider<DetailCubit>(
-      create: (context) => DetailCubit(),
-      child: Container(
-        child: _DetailPage(),
-      ),
-    );
-  }
-}
-
-class _DetailPage extends StatelessWidget {
   final Menu item = Get.arguments;
+  final DetailController detailsController = Get.put(DetailController());
 
   @override
   Widget build(BuildContext context) {
-    BlocProvider.of<DetailCubit>(context).init(item: item);
+    detailsController.init(item);
     return Scaffold(
       bottomNavigationBar: DetailsFooterWidget(price: item.price),
       body: SingleChildScrollView(
@@ -41,24 +27,22 @@ class _DetailPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             ImageCardWidget(item: item),
-            Container(
-              child: BlocBuilder<DetailCubit, DetailState>(
-                builder: (context, state) {
-                  return Column(children: [
-                    _listBuilder(
-                      context: context,
-                      slug: EnumListSlugs.items,
-                      list: state.item.items,
-                    ),
-                    _listBuilder(
-                      context: context,
-                      slug: EnumListSlugs.optional,
-                      list: state.item.optional,
-                    )
-                  ]);
-                },
-              ),
-            ),
+            GetBuilder<DetailController>(builder: (_) {
+              return Column(
+                children: [
+                  _listBuilder(
+                    context: context,
+                    slug: EnumListSlugs.items,
+                    list: _.menu.items,
+                  ),
+                  _listBuilder(
+                    context: context,
+                    slug: EnumListSlugs.optional,
+                    list: _.menu.optional,
+                  ),
+                ],
+              );
+            }),
           ],
         ),
       ),
