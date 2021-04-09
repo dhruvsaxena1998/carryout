@@ -7,7 +7,9 @@ part 'Menu.g.dart';
 
 @JsonSerializable()
 class Menu {
-  String id, name, description;
+  @JsonKey(name: '_id')
+  String id;
+  String name, description;
   num price;
   MediaImage image;
   List<Item> items, optional;

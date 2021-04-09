@@ -8,22 +8,22 @@ part of 'Item.dart';
 
 Item _$ItemFromJson(Map<String, dynamic> json) {
   return Item(
-    defaults: json['default'] as num, // modified
-    id: json['id'] as String,
-    max: json['max'] as num,
+    defaultQty: json['defaultQty'] as num,
+    id: json['_id'] as String,
+    maxQty: json['maxQty'] as num,
     name: json['name'] as String,
     slug: json['slug'] as String,
     price: json['price'] as num,
-    current: json['current'] as num,
+    currentQty: json['currentQty'] as num,
   );
 }
 
 Map<String, dynamic> _$ItemToJson(Item instance) => <String, dynamic>{
-      'max': instance.max,
-      'default': instance.defaults, // modified
-      'current': instance.current,
-      'price': instance.price,
-      'id': instance.id,
+      '_id': instance.id,
       'name': instance.name,
       'slug': instance.slug,
+      'maxQty': instance.maxQty,
+      'defaultQty': instance.defaultQty,
+      'currentQty': instance.currentQty,
+      'price': instance.price,
     };

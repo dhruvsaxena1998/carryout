@@ -25,7 +25,7 @@ const create = async (req, res) => {
     const body = {
       ...req.body,
       slug: generateSlug(req.body.name),
-      current: req.body.default
+      currentQty: req.body.defaultQty
     };
 
     const entity = await Item.create(body);
@@ -49,7 +49,7 @@ const update = async (req, res) => {
     // delete slug if provided
     delete req.body.slug;
 
-    const entity = await Item.findByIdAndUpdate(id, req.body.slug, {
+    const entity = await Item.findByIdAndUpdate(id, req.body, {
       new: true, // return updated document
     });
 

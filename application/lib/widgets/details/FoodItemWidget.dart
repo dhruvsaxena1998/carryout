@@ -88,7 +88,7 @@ class FoodItemWidget extends StatelessWidget {
                     Expanded(
                       flex: 1,
                       child: Text(
-                        "${item.current}",
+                        "${item.currentQty}",
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           color: AppTheme.colors.accent,

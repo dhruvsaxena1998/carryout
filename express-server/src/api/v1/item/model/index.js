@@ -4,9 +4,9 @@ const schema = Schema({
   name: String,
   price: Number,
   slug: { type: String, unique: true },
-  max: { type: Number, default: 2 },
-  default: { type: Number, default: 1 },
-  current: { type: Number, default: 1 },
+  maxQty: { type: Number, default: 2 },
+  defaultQty: { type: Number, default: 1 },
+  currentQty: { type: Number, default: 1 },
 });
 
 export default model("Item", schema);

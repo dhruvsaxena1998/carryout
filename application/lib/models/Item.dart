@@ -4,17 +4,19 @@ part 'Item.g.dart';
 
 @JsonSerializable()
 class Item {
-  num max, defaults, current, price;
-  String id, name, slug;
+  @JsonKey(name: '_id')
+  String id;
+  String name, slug;
+  num maxQty, defaultQty, currentQty, price;
 
   Item({
-    this.defaults,
+    this.defaultQty,
     this.id,
-    this.max,
+    this.maxQty,
     this.name,
     this.slug,
     this.price,
-    this.current,
+    this.currentQty,
   });
 
   factory Item.fromJson(Map<String, dynamic> json) => _$ItemFromJson(json);
