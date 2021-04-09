@@ -25,9 +25,11 @@ class DetailController extends GetxController {
     Item item = items[index];
 
     if (action == EnumBtnActions.increment)
-      item.current = item.current + 1 >= item.max ? item.max : item.current + 1;
+      item.currentQty = item.currentQty + 1 >= item.maxQty
+          ? item.maxQty
+          : item.currentQty + 1;
     else
-      item.current = item.current - 1 <= 0 ? 0 : item.current - 1;
+      item.currentQty = item.currentQty - 1 <= 0 ? 0 : item.currentQty - 1;
 
     // set update item to items list
     items[index] = item;
@@ -43,8 +45,8 @@ class DetailController extends GetxController {
 
     List<Item> items = new List.from(item.items)..addAll(item.optional);
     items.forEach((el) {
-      if (el.current > el.defaults) {
-        price += (el.current - el.defaults) * el.price;
+      if (el.currentQty > el.defaultQty) {
+        price += (el.currentQty - el.defaultQty) * el.price;
       }
     });
 
