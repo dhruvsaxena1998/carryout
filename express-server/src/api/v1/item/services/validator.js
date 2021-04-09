@@ -10,11 +10,11 @@ const common = [
 ];
 
 const create = concat(common, [
-  body("max")
+  body("maxQty")
     .exists()
     .isNumeric()
     .withMessage("Max value can always be a number"),
-  body("default")
+  body("defaultQty")
     .exists()
     .isNumeric()
     .withMessage("Default value can always be a number"),
