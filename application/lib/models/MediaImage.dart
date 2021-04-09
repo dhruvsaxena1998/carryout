@@ -1,3 +1,8 @@
+import 'package:json_annotation/json_annotation.dart';
+
+part 'MediaImage.g.dart';
+
+@JsonSerializable()
 class MediaImage {
   String fieldname, encoding, mimetype, filename, path, url;
   num size;
@@ -12,25 +17,8 @@ class MediaImage {
     this.size,
   });
 
-  MediaImage.fromJson(Map<String, dynamic> json) {
-    fieldname = json['fieldname'];
-    encoding = json['encoding'];
-    mimetype = json['mimetype'];
-    filename = json['filename'];
-    size = json['size'];
-    path = json['path'];
-    url = json['url'];
-  }
+  factory MediaImage.fromJson(Map<String, dynamic> json) =>
+      _$MediaImageFromJson(json);
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['fieldname'] = this.fieldname;
-    data['encoding'] = this.encoding;
-    data['mimetype'] = this.mimetype;
-    data['filename'] = this.filename;
-    data['size'] = this.size;
-    data['path'] = this.path;
-    data['url'] = this.url;
-    return data;
-  }
+  Map<String, dynamic> toJson() => _$MediaImageToJson(this);
 }
