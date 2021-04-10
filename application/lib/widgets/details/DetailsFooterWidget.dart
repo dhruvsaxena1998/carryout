@@ -1,9 +1,10 @@
-import 'package:carryout/controllers/DetailController.dart';
+import 'package:carryout/theme.dart';
+import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-
+import 'package:badges/badges.dart';
 import 'package:carryout/widgets/common/FullWidthButtonWidget.dart';
 import 'package:carryout/widgets/common/PriceWidget.dart';
-import 'package:get/get.dart';
+import 'package:carryout/controllers/DetailController.dart';
 
 class DetailsFooterWidget extends StatelessWidget {
   final num price;
@@ -27,7 +28,16 @@ class DetailsFooterWidget extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(left: 5),
             child: GetBuilder<DetailController>(builder: (_) {
-              return PriceWidget(price: _.menu.price);
+              return _.ogPrice == _.menu.price
+                  ? PriceWidget(price: _.menu.price)
+                  : Badge(
+                      badgeContent: Icon(
+                        Icons.shopping_cart_rounded,
+                        color: AppTheme.colors.light,
+                        size: 18,
+                      ),
+                      child: PriceWidget(price: _.menu.price),
+                    );
             }),
           ),
         ],

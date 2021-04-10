@@ -27,6 +27,7 @@ dependencies:
   dio: ^3.0.10
   blobs: ^1.2.0
   marquee_text: ^2.0.0
+  badges: ^1.2.0
   cupertino_icons: ^1.0.2
   json_annotation: 3.1.1
 
