@@ -3,16 +3,25 @@ import 'package:flutter/material.dart';
 
 class PriceWidget extends StatelessWidget {
   final num price;
+  final double height;
+  final double width;
+  final double fontSize;
 
-  const PriceWidget({Key key, @required this.price}) : super(key: key);
+  const PriceWidget({
+    Key key,
+    @required this.price,
+    this.height = 50,
+    this.width = 100,
+    this.fontSize = 18,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
       borderRadius: BorderRadius.circular(15),
       child: Container(
-        height: 50,
-        width: 100,
+        height: height,
+        width: width,
         color: AppTheme.colors.accent,
         child: Align(
           alignment: Alignment.center,
@@ -20,7 +29,7 @@ class PriceWidget extends StatelessWidget {
             "₹ $price",
             style: TextStyle(
               color: AppTheme.colors.dark,
-              fontSize: 18,
+              fontSize: fontSize,
               fontWeight: FontWeight.w700,
               fontFamily: 'Poppins',
             ),

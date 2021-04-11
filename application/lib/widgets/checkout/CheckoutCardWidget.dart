@@ -1,4 +1,5 @@
 import 'package:carryout/utils/api.dart';
+import 'package:carryout/widgets/common/PriceWidget.dart';
 import 'package:flutter/material.dart';
 
 import 'package:carryout/theme.dart';
@@ -46,14 +47,10 @@ class CheckoutCardWidget extends StatelessWidget {
                         fontFamily: 'Poppins',
                       ),
                     ),
-                    Text(
-                      "₹ ${item.price}",
-                      style: TextStyle(
-                        color: AppTheme.colors.accent,
-                        fontSize: 24,
-                        fontWeight: FontWeight.w500,
-                        fontFamily: 'Poppins',
-                      ),
+                    PriceWidget(
+                      price: item.price,
+                      height: 40,
+                      width: 80,
                     ),
                   ],
                 ),
