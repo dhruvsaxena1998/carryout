@@ -36,6 +36,13 @@ const upload = multer({ storage });
 Router.get("/", Controller.find);
 
 /**
+ * @route /:id
+ * @method GET
+ * @description Get One Menu
+ */
+Router.get("/:id", [Validator.exists], Controller.findOne);
+
+/**
  * @route /
  * @method POST
  * @description Create a menu
@@ -47,6 +54,10 @@ Router.post("/", [Validator.create], Controller.create);
  * @method POST
  * @description Add Image to menu
  */
-Router.post("/:id/image", [Validator.exists, upload.single("image")], Controller.image);
+Router.post(
+  "/:id/image",
+  [Validator.exists, upload.single("image")],
+  Controller.image
+);
 
 export default Router;

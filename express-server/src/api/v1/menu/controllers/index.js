@@ -15,6 +15,19 @@ const find = async (req, res) => {
   res.status(200).send(entities);
 };
 
+
+const findOne = async (req, res) => {
+  const { populate } = req.query;
+
+  let entity;
+  if (!populate) {
+    entity = await Menu.findById(req.params.id);
+  } else {
+    entity = await Menu.findById(req.params.id).populate("items").populate("optional");
+  }
+  res.status(200).send(entity);
+};
+
 const create = async (req, res) => {
   try {
     const errors = validationResult(req);
@@ -67,6 +80,7 @@ const image = async (req, res) => {
 
 export default {
   find,
+  findOne,
   create,
   image,
 };

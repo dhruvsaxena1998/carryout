@@ -1,9 +1,13 @@
-@uri=http://localhost:5000/api/v1
+@uri=http://localhost:1337/api/v1
 
 ### GET: /menu
 GET {{uri}}/menu?populate=true
 
-### POST: /item
+### GET: /menu/:id
+GET {{uri}}/menu/6069741ac1e97bc31c6a477c
+
+
+### POST: /menu
 POST {{uri}}/menu
 Content-Type: application/json
 
