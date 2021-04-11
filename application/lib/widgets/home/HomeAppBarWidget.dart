@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:carryout/theme.dart';
 
-class AppBarWidget extends StatelessWidget {
+class HomeAppBarWidget extends StatelessWidget {
   final String username;
   final String img;
-  const AppBarWidget({Key key, this.username, this.img}) : super(key: key);
+  const HomeAppBarWidget({Key key, this.username, this.img}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -1,14 +1,35 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:carryout/theme.dart';
 import 'package:marquee_text/marquee_direction.dart';
 import 'package:marquee_text/marquee_text.dart';
 
-class CommonAppBarWidget extends StatelessWidget {
-  final String id;
-  final String name;
+class AppBarWidget extends PreferredSize {
+  final Widget child;
+  final double height;
 
-  CommonAppBarWidget({Key key, this.id, this.name}) : super(key: key);
+  AppBarWidget({
+    @required this.child,
+    this.height = kToolbarHeight,
+  });
+  @override
+  Size get preferredSize => Size.fromHeight(height);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: preferredSize.height,
+      child: child,
+    );
+  }
+}
+
+class CommonAppBarWidget extends StatelessWidget {
+  final String name;
+  final Widget action;
+  CommonAppBarWidget({Key key, this.name, this.action}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -29,8 +50,9 @@ class CommonAppBarWidget extends StatelessWidget {
             ),
             Expanded(
               flex: 1,
-              child: MarqueeText(
-                text: name,
+              child: Text(
+                name,
+                textAlign: TextAlign.center,
                 style: TextStyle(
                   color: AppTheme.colors.light,
                   fontSize: 22,
@@ -38,20 +60,9 @@ class CommonAppBarWidget extends StatelessWidget {
                   fontFamily: 'Avenir',
                   letterSpacing: 1.2,
                 ),
-                speed: 30,
-                alwaysScroll: false,
-                marqueeDirection: MarqueeDirection.rtl,
               ),
             ),
-            IconButton(
-              icon: Icon(
-                Icons.bookmark_border_rounded,
-                color: AppTheme.colors.light,
-              ),
-              onPressed: () {
-                // Save Bookmark
-              },
-            ),
+            action,
           ],
         ),
       ),

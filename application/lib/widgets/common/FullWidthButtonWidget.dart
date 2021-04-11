@@ -3,13 +3,15 @@ import 'package:flutter/material.dart';
 
 class FullWidthButtonWidget extends StatelessWidget {
   final String title;
+  final Function onTap;
 
-  FullWidthButtonWidget({Key key, @required this.title}) : super(key: key);
+  FullWidthButtonWidget({Key key, @required this.title, @required this.onTap})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: onTap,
       customBorder: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(15),
       ),

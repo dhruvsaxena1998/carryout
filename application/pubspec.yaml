@@ -28,6 +28,7 @@ dependencies:
   blobs: ^1.2.0
   marquee_text: ^2.0.0
   badges: ^1.2.0
+  slide_to_act: ^2.0.1
   cupertino_icons: ^1.0.2
   json_annotation: 3.1.1
 
@@ -49,8 +50,7 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-    # assets:
-    #   - images/a_dot_burr.jpeg
+  # assets:
     #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

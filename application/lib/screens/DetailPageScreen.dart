@@ -14,13 +14,14 @@ import 'package:carryout/models/Menu.dart';
 
 class DetailPageScreen extends StatelessWidget {
   final Menu item = Get.arguments;
+  // setting up state
   final DetailController detailsController = Get.put(DetailController());
 
   @override
   Widget build(BuildContext context) {
     detailsController.init(item);
     return Scaffold(
-      bottomNavigationBar: DetailsFooterWidget(price: item.price),
+      bottomNavigationBar: DetailsFooterWidget(),
       body: SingleChildScrollView(
         physics: BouncingScrollPhysics(),
         child: Column(

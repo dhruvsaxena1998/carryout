@@ -19,7 +19,7 @@ class HomePage extends StatelessWidget {
       body: Container(
         child: Column(
           children: <Widget>[
-            AppBarWidget(
+            HomeAppBarWidget(
               username: 'Dhruv',
               img: "${API.public}/uploads/avatar.jpg",
             ),
@@ -55,23 +55,16 @@ Widget __menuItemsBuilder(BuildContext context, AsyncSnapshot snapshot) {
     items.add(new Menu.fromJson(item));
   });
 
-  final MenuController menuController = Get.put(MenuController());
-  menuController.init(items);
-
   return Expanded(
     child: MediaQuery.removePadding(
       removeTop: true,
       context: context,
-      child: GetBuilder<MenuController>(
-        builder: (_) {
-          return ListView.builder(
-            physics: BouncingScrollPhysics(),
-            itemCount: _.menus.length,
-            itemBuilder: (context, index) {
-              return CardWidget(
-                item: _.menus[index],
-              );
-            },
+      child: ListView.builder(
+        physics: BouncingScrollPhysics(),
+        itemCount: items.length,
+        itemBuilder: (context, index) {
+          return CardWidget(
+            item: items[index],
           );
         },
       ),

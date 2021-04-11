@@ -18,6 +18,16 @@ class Server {
   static Future<List> find(String collection, {Map<String, dynamic> qs}) async {
     final String url = "/$collection";
     log("[Request: GET] $url");
+
+    var response = await dio.get(url, queryParameters: qs);
+    return response.data;
+  }
+
+  static Future findOne(String collection, String id,
+      {Map<String, dynamic> qs}) async {
+    final String url = "/$collection/$id";
+    log("[Request: GET] $url");
+
     var response = await dio.get(url, queryParameters: qs);
     return response.data;
   }
