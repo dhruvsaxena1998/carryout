@@ -1,10 +1,6 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:carryout/theme.dart';
-import 'package:marquee_text/marquee_direction.dart';
-import 'package:marquee_text/marquee_text.dart';
 
 class AppBarWidget extends PreferredSize {
   final Widget child;

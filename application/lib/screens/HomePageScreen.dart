@@ -6,9 +6,7 @@ import 'package:carryout/widgets/home/HomeAppBarWidget.dart';
 import 'package:carryout/widgets/home/CardWidget.dart';
 import 'package:carryout/widgets/common/StateWidget.dart';
 
-import 'package:carryout/controllers/MenuController.dart';
 import 'package:carryout/models/Menu.dart';
-import 'package:get/get.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key key}) : super(key: key);
