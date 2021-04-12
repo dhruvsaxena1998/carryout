@@ -2,11 +2,16 @@ import 'package:flutter/material.dart';
 
 import 'package:carryout/theme.dart';
 import 'package:carryout/utils/api.dart';
-import 'package:carryout/models/Menu.dart';
 
 class ImageCardWidget extends StatelessWidget {
-  final Menu item;
-  const ImageCardWidget({Key key, @required this.item}) : super(key: key);
+  final String id, img, name, description;
+  const ImageCardWidget({
+    Key key,
+    @required this.id,
+    @required this.img,
+    @required this.name,
+    this.description = '',
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,14 +30,14 @@ class ImageCardWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Hero(
-              tag: "image-${item.id}",
+              tag: "image-$id",
               child: Container(
                 height: width,
                 padding: const EdgeInsets.all(10),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(25),
                   child: Image.network(
-                    "${API.public}${item.image.url}",
+                    "${API.public}$img",
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -45,7 +50,7 @@ class ImageCardWidget extends StatelessWidget {
                   Align(
                     alignment: Alignment.centerRight,
                     child: Text(
-                      item.name,
+                      name,
                       style: TextStyle(
                         color: AppTheme.colors.white,
                         fontSize: 22,
@@ -57,7 +62,7 @@ class ImageCardWidget extends StatelessWidget {
                   Align(
                     alignment: Alignment.centerRight,
                     child: Text(
-                      item.description,
+                      description,
                       textAlign: TextAlign.justify,
                       style: TextStyle(
                         color: AppTheme.colors.light,

@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+
+import 'package:flutter_redux/flutter_redux.dart';
+import 'package:carryout/redux/app_state.dart';
+
+import 'package:carryout/models/Menu.dart';
+import 'package:carryout/types/enum.dart';
 
 import 'package:carryout/theme.dart';
 
@@ -7,44 +12,45 @@ import 'package:carryout/widgets/details/ImageCardWidget.dart';
 import 'package:carryout/widgets/details/FoodItemWidget.dart';
 import 'package:carryout/widgets/details/DetailsFooterWidget.dart';
 
-import 'package:carryout/controllers/DetailController.dart';
-
-import 'package:carryout/types/enum.dart';
-import 'package:carryout/models/Menu.dart';
-
 class DetailPageScreen extends StatelessWidget {
-  final Menu item = Get.arguments;
-  // setting up state
-  final DetailController detailsController = Get.put(DetailController());
+  final num index;
+  DetailPageScreen({
+    Key key,
+    @required this.index,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    detailsController.init(item);
     return Scaffold(
       bottomNavigationBar: DetailsFooterWidget(),
       body: SingleChildScrollView(
         physics: BouncingScrollPhysics(),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            ImageCardWidget(item: item),
-            GetBuilder<DetailController>(builder: (_) {
-              return Column(
-                children: [
-                  _listBuilder(
-                    context: context,
-                    slug: EnumListSlugs.items,
-                    list: _.menu.items,
-                  ),
-                  _listBuilder(
-                    context: context,
-                    slug: EnumListSlugs.optional,
-                    list: _.menu.optional,
-                  ),
-                ],
-              );
-            }),
-          ],
+        child: StoreConnector<AppState, List<Menu>>(
+          converter: (store) => store.state.menus,
+          builder: (context, List<Menu> vm) {
+            var item = vm[index];
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                ImageCardWidget(
+                  id: item.id,
+                  name: item.name,
+                  description: item.description,
+                  img: item.image.url,
+                ),
+                _listBuilder(
+                  context: context,
+                  slug: EnumListSlugs.items,
+                  list: item.items,
+                ),
+                _listBuilder(
+                  context: context,
+                  slug: EnumListSlugs.optional,
+                  list: item.optional,
+                ),
+              ],
+            );
+          },
         ),
       ),
     );

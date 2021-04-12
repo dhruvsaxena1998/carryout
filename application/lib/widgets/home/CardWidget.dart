@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 import 'package:carryout/theme.dart';
 import 'package:carryout/utils/api.dart';
@@ -8,8 +7,15 @@ import 'package:carryout/models/Menu.dart';
 
 class CardWidget extends StatelessWidget {
   final Menu item;
+  final int index;
+  final Function onTap;
 
-  const CardWidget({Key key, this.item}) : super(key: key);
+  const CardWidget({
+    Key key,
+    this.item,
+    this.index,
+    this.onTap,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,9 +27,7 @@ class CardWidget extends StatelessWidget {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
       margin: const EdgeInsets.only(bottom: 20, left: 10, right: 10),
       child: InkWell(
-        onTap: () {
-          Get.toNamed('/detail', arguments: item);
-        },
+        onTap: onTap,
         customBorder:
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
         child: Container(

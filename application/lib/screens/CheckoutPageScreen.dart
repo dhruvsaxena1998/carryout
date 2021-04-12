@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 import 'package:carryout/theme.dart';
 
@@ -9,9 +8,8 @@ import 'package:carryout/widgets/common/CommonAppBarWidget.dart';
 import 'package:carryout/widgets/checkout/CheckoutCardWidget.dart';
 
 class CheckoutPageScreen extends StatelessWidget {
-  final Menu item = Get.arguments;
-
-  CheckoutPageScreen({Key key}) : super(key: key);
+  final Menu item;
+  CheckoutPageScreen({Key key, this.item}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(

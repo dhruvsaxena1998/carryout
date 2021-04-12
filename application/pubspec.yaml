@@ -23,7 +23,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  get: ^3.26.0
   dio: ^3.0.10
   blobs: ^1.2.0
   marquee_text: ^2.0.0
@@ -31,6 +30,7 @@ dependencies:
   slide_to_act: ^2.0.1
   cupertino_icons: ^1.0.2
   json_annotation: 3.1.1
+  flutter_redux: ^0.8.2
 
 dev_dependencies:
   flutter_test:

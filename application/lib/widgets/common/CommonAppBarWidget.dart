@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:carryout/theme.dart';
 
 class AppBarWidget extends PreferredSize {
@@ -40,9 +39,7 @@ class CommonAppBarWidget extends StatelessWidget {
                 Icons.arrow_back_rounded,
                 color: AppTheme.colors.light,
               ),
-              onPressed: () {
-                Get.back();
-              },
+              onPressed: () {},
             ),
             Expanded(
               flex: 1,
