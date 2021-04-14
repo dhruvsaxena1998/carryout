@@ -1,5 +1,8 @@
+import 'package:carryout/redux/actions.dart';
+import 'package:carryout/redux/app_state.dart';
 import 'package:flutter/material.dart';
 import 'package:carryout/theme.dart';
+import 'package:flutter_redux/flutter_redux.dart';
 
 import 'package:marquee_text/marquee_direction.dart';
 import 'package:marquee_text/marquee_text.dart';
@@ -20,7 +23,11 @@ class FoodItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    void handleChange(EnumBtnActions action) {}
+    void handleChange(EnumBtnActions action) {
+      StoreProvider.of<AppState>(context).dispatch(
+        HandleChangeAction(index: index, cta: action, slug: slug),
+      );
+    }
 
     return Card(
       margin: const EdgeInsets.symmetric(vertical: 7),

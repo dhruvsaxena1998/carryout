@@ -73,6 +73,9 @@ Widget __menuItemsBuilder(BuildContext context, AsyncSnapshot snapshot) {
             return CardWidget(
               item: vm[index],
               onTap: () {
+                // Set selected menu to state
+                StoreProvider.of<AppState>(context)
+                    .dispatch(SelectMenuAction(index: index));
                 Navigator.push(
                   context,
                   MaterialPageRoute(

@@ -39,7 +39,9 @@ class CommonAppBarWidget extends StatelessWidget {
                 Icons.arrow_back_rounded,
                 color: AppTheme.colors.light,
               ),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pop(context);
+              },
             ),
             Expanded(
               flex: 1,

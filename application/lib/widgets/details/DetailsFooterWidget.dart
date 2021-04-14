@@ -1,3 +1,5 @@
+import 'package:carryout/models/Menu.dart';
+import 'package:carryout/redux/app_state.dart';
 import 'package:flutter/material.dart';
 
 import 'package:badges/badges.dart';
@@ -5,6 +7,7 @@ import 'package:carryout/theme.dart';
 
 import 'package:carryout/widgets/common/FullWidthButtonWidget.dart';
 import 'package:carryout/widgets/common/PriceWidget.dart';
+import 'package:flutter_redux/flutter_redux.dart';
 
 class DetailsFooterWidget extends StatelessWidget {
   const DetailsFooterWidget({Key key}) : super(key: key);
@@ -26,7 +29,10 @@ class DetailsFooterWidget extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.only(left: 5),
-            child: PriceWidget(price: 65),
+            child: StoreConnector<AppState, Menu>(
+              converter: (store) => store.state.selectedMenu,
+              builder: (context, Menu menu) => PriceWidget(price: menu.price),
+            ),
           )
           // Padding(
           //   padding: const EdgeInsets.only(left: 5),
