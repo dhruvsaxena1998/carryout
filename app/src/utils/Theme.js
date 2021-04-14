@@ -5,3 +5,7 @@ export const Colors = {
   light: '#DBDBDB',
   accent: '#FFE598',
 };
+
+export default {
+  Colors,
+};
