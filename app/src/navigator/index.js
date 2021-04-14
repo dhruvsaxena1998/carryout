@@ -4,9 +4,9 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 
 // Routes
-import * as Routes from './routes';
+import * as Routes from './Routes';
 // Screens
-import HomePageScreen from './screens/Home';
+import HomePageScreen from '@screens/Home';
 
 // Stack navigator
 const StackScreenOptions = {
