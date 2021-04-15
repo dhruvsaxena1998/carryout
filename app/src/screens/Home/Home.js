@@ -1,5 +1,5 @@
 import React from 'react';
-import HomeLayout from '../../layouts/HomeLayout';
+import HomeLayout from '@layouts/HomeLayout';
 import {View, Text, StyleSheet} from 'react-native';
 
 const HomePage = () => {
