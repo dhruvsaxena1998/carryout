@@ -2,16 +2,16 @@ import React from 'react';
 import {ThemeProvider} from 'react-native-magnus';
 import Navigator from './navigator';
 
-import {Colors} from './utils/Theme';
+import Theme from './utils/Theme';
+const theme = {
+  colors: Theme.Colors,
+  fontFamily: Theme.FontFamily,
+};
+
 const App = () => {
   return <Navigator />;
 };
 
-const theme = {
-  colors: {
-    ...Colors,
-  },
-};
 export default () => (
   <ThemeProvider theme={theme}>
     <App />

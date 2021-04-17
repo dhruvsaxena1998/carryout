@@ -6,6 +6,16 @@ export const Colors = {
   accent: '#FFE598',
 };
 
+export const FontFamily = {
+  normal: 'Poppins-Regular',
+  bold: 'Poppins-Bold',
+  100: 'Poppins-Light',
+  500: 'Poppins-Medium',
+  700: 'Poppins-SemiBold',
+  900: 'Poppins-ExtraBold',
+};
+
 export default {
   Colors,
+  FontFamily,
 };

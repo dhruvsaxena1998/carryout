@@ -1,20 +1,26 @@
 import React from 'react';
-import {Dimensions, StatusBar, SafeAreaView} from 'react-native';
+import {StatusBar, SafeAreaView, StyleSheet} from 'react-native';
 import {Div} from 'react-native-magnus';
 import {Colors} from '@utils/Theme';
 
 // Components
-import Header from '@components/HomeHeader';
+import Header from '@components/Home/HomeHeader';
 
-const {height} = Dimensions.get('window');
 export default ({style, children}) => {
   return (
-    <SafeAreaView>
+    <SafeAreaView style={styles.container}>
       <StatusBar backgroundColor={Colors.black} />
-      <Div bg="black" h={height} style={{...style}}>
+      <Div style={{...style}} p={20}>
         <Header />
         {children}
       </Div>
     </SafeAreaView>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: Colors.black,
+  },
+});
