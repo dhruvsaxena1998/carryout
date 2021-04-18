@@ -4,6 +4,7 @@ export const Colors = {
   dark: '#2D2D2D',
   light: '#DBDBDB',
   accent: '#FFE598',
+  danger: '#e53e3e',
 };
 
 export const FontFamily = {

@@ -1,7 +1,7 @@
 import React from 'react';
 import {Badge, Div, Text} from 'react-native-magnus';
 
-const UIPrice = ({...rest}) => (
+const UIPrice = ({price, ...rest}) => (
   <Div
     bg="accent"
     rounded="xl"
@@ -10,20 +10,20 @@ const UIPrice = ({...rest}) => (
     justifyContent="center"
     {...rest}>
     <Text color="dark" fontSize="xl" px={10} fontWeight="bold">
-      ₹62
+      ₹{price}
     </Text>
   </Div>
 );
 
-export default ({badge, ...rest}) => {
+export default ({badge, price, ...rest}) => {
   return (
     <>
       {badge ? (
         <Badge bg="red500" right={-5} top={-5} h={20} w={20}>
-          <UIPrice />
+          <UIPrice price={price} {...rest} />
         </Badge>
       ) : (
-        <UIPrice {...rest} />
+        <UIPrice price={price} {...rest} />
       )}
     </>
   );

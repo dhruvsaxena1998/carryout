@@ -2,9 +2,15 @@ import React from 'react';
 import {Pressable} from 'react-native';
 import {Div, Image, Text} from 'react-native-magnus';
 
+// Helpers
+import {baseURL} from '@helpers/constants';
+
 // Components
 import UIPrice from '@components/UI/UiPrice';
 
+/**
+ * @param {import('@src/@types/Menu').Menu} item
+ */
 export default ({item, index, style, onPress, ...rest}) => {
   return (
     <Pressable onPress={onPress}>
@@ -14,26 +20,26 @@ export default ({item, index, style, onPress, ...rest}) => {
         p={20}
         bg="dark"
         rounded="xl"
-        shadow="xl"
+        shadow="sm"
         justifyContent="space-between"
         alignItems="stretch">
         <Div flex={1} justifyContent="space-between">
           <Div>
             <Text fontSize="4xl" color="white" fontWeight="bold">
-              Thali 1
+              {item.name}
             </Text>
             <Text fontSize="lg" color="light" mr={10}>
-              Mix daal and vegetable with rice and 6 chapatis
+              {item.description}
             </Text>
           </Div>
-          <UIPrice w={100} />
+          <UIPrice w={100} price={item.price} />
         </Div>
         <Div bg="dark" ml={10} rounded="circle" shadow="md">
           <Image
             h={170}
             w={170}
             rounded="circle"
-            source={{uri: 'https://i.imgur.com/QDjtvYA.jpg'}}
+            source={{uri: baseURL + item.image.url}}
           />
         </Div>
       </Div>
