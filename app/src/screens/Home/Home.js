@@ -32,7 +32,7 @@ const HomePage = () => {
             suffix: (
               <Icon
                 name="checkcircle"
-                color="white"
+                color="secondary"
                 fontSize="md"
                 fontFamily="AntDesign"
               />
@@ -67,7 +67,7 @@ const HomePage = () => {
           />
         </Div>
       </HomeLayout>
-      <Snackbar ref={snackbarRef} bg="danger" color="dark" />
+      <Snackbar ref={snackbarRef} bg="danger" color="secondary" />
     </>
   );
 };

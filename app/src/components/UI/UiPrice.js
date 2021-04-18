@@ -9,7 +9,7 @@ const UIPrice = ({price, ...rest}) => (
     alignItems="center"
     justifyContent="center"
     {...rest}>
-    <Text color="dark" fontSize="xl" px={10} fontWeight="bold">
+    <Text color="secondary" fontSize="xl" px={10} fontWeight="bold">
       ₹{price}
     </Text>
   </Div>
@@ -19,7 +19,7 @@ export default ({badge, price, ...rest}) => {
   return (
     <>
       {badge ? (
-        <Badge bg="red500" right={-5} top={-5} h={20} w={20}>
+        <Badge bg="danger" right={-5} top={-5} h={20} w={20}>
           <UIPrice price={price} {...rest} />
         </Badge>
       ) : (

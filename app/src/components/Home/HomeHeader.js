@@ -11,15 +11,15 @@ export default () => {
   return (
     <Div row my={30} justifyContent="space-between">
       <Div>
-        <Text fontWeight="bold" color="white" fontSize={28}>
+        <Text fontWeight="bold" color="foreground" fontSize={28}>
           {Strings.greeting} Dhruv,
         </Text>
-        <Text fontWeight="500" color="light" fontSize="lg">
+        <Text fontWeight="500" color="foreground" fontSize="lg">
           {Strings.welcomeLine}
         </Text>
       </Div>
       <Pressable onPress={onPressHandler}>
-        <Div w={70} h={70} rounded={35} borderColor="dark" borderWidth={2}>
+        <Div w={70} h={70} rounded={35} borderColor="secondary" borderWidth={2}>
           <Image
             h={65}
             w={65}

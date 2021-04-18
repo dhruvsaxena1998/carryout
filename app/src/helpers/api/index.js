@@ -11,12 +11,6 @@ export const find = async (collection, queryString) => {
     const query = qs.stringify(queryString);
     const url = `/${collection}?${query}`;
     const {data} = await publicInstance.get(url);
-
-    console.log({
-      path: `api-find: ${collection}`,
-      url,
-      data,
-    });
     return {
       success: true,
       data,

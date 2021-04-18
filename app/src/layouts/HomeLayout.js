@@ -9,7 +9,7 @@ import Header from '@components/Home/HomeHeader';
 export default ({style, children}) => {
   return (
     <SafeAreaView style={styles.container}>
-      <StatusBar backgroundColor={Colors.black} />
+      <StatusBar backgroundColor={Colors.background} />
       <Div style={{...style}} p={20}>
         <Header />
         {children}
@@ -21,6 +21,6 @@ export default ({style, children}) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Colors.black,
+    backgroundColor: Colors.background,
   },
 });

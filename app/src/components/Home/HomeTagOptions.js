@@ -9,11 +9,11 @@ export default ({item, index, style, onPress, ...rest}) => {
         <Div
           p={10}
           rounded="xl"
-          bg="dark"
+          bg="secondary"
           justifyContent="center"
           shadow="xl"
           style={style}>
-          <Text px={10} fontSize="lg" fontWeight="bold" color="white">
+          <Text px={10} fontSize="lg" fontWeight="bold" color="foreground">
             {item.label}
           </Text>
         </Div>
