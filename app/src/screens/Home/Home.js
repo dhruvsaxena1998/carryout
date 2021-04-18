@@ -1,8 +1,11 @@
 import React, {useState, useEffect, useCallback} from 'react';
+import {Div, Snackbar, Icon} from 'react-native-magnus';
+import {FlatList} from 'react-native';
+
 import {useSelector, useDispatch} from 'react-redux';
 import {init} from '@store/menu';
-import {FlatList} from 'react-native';
-import {Div, Snackbar, Icon} from 'react-native-magnus';
+
+import {DetailPage} from '@navigator/Routes';
 
 // Api
 import {find} from '@helpers/api';
@@ -20,9 +23,11 @@ const DATA = [
   {slug: 'fast-food', label: 'Fast Food'},
 ];
 const snackbarRef = React.createRef();
-const HomePage = () => {
+
+const HomePage = props => {
   const {menus} = useSelector(state => state.menu);
   const dispatch = useDispatch();
+
   useEffect(() => {
     (async () => {
       const {success, data, message} = await find(routes.menu, {
@@ -47,10 +52,14 @@ const HomePage = () => {
       dispatch(init(data));
     })();
   }, [dispatch]);
+
+  const handleFoodCardClick = index => {
+    props.navigation.navigate(DetailPage, {index});
+  };
   return (
     <>
       <HomeLayout>
-        <Div mt={30} row>
+        <Div row>
           <FlatList
             data={DATA}
             horizontal={true}
@@ -65,7 +74,11 @@ const HomePage = () => {
             data={menus}
             keyExtractor={item => item._id}
             renderItem={({item, index}) => (
-              <HomeFoodCard item={item} index={index} onPress={() => {}} />
+              <HomeFoodCard
+                item={item}
+                index={index}
+                onPress={handleFoodCardClick}
+              />
             )}
           />
         </Div>

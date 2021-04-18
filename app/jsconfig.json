@@ -9,6 +9,7 @@
       "@components/*": ["./src/components/*"],
       "@helpers/*": ["./src/helpers/*"],
       "@layouts/*": ["src/layouts/*"],
+      "@navigator/*": ["src/navigator/*"],
       "@screens/*": ["./src/screens/*"],
       "@store/*": ["./src/store/*"],
       "@typesdef/*": ["src/@types/*"],

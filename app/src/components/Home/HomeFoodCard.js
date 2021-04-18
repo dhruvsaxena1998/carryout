@@ -9,8 +9,11 @@ import {baseURL} from '@helpers/constants';
 import UIPrice from '@components/UI/UiPrice';
 
 export default ({item, index, style, onPress, ...rest}) => {
+  const handleOnPress = () => {
+    onPress(index);
+  };
   return (
-    <Pressable onPress={onPress}>
+    <Pressable onPress={handleOnPress}>
       <Div
         row
         my={10}
@@ -25,13 +28,13 @@ export default ({item, index, style, onPress, ...rest}) => {
             <Text fontSize="4xl" color="foreground" fontWeight="bold">
               {item.name}
             </Text>
-            <Text fontSize="lg" color="foreground" mr={10}>
+            <Text fontSize="lg" color="foreground" mr={10} numberOfLines={2}>
               {item.description}
             </Text>
           </Div>
           <UIPrice w={100} price={item.price} />
         </Div>
-        <Div bg="secondary" ml={10} rounded="circle" shadow="md">
+        <Div bg="secondary" ml={10} rounded="circle">
           <Image
             h={170}
             w={170}

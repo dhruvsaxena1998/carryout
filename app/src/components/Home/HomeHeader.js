@@ -10,7 +10,7 @@ export default () => {
   };
   return (
     <Div row my={30} justifyContent="space-between">
-      <Div>
+      <Div flex={1}>
         <Text fontWeight="bold" color="foreground" fontSize={28}>
           {Strings.greeting} Dhruv,
         </Text>

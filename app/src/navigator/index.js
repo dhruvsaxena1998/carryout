@@ -7,6 +7,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import * as Routes from './Routes';
 // Screens
 import HomePageScreen from '@screens/Home';
+import DetailPageScreen from '@screens/Detail';
 
 // Stack navigator
 const StackScreenOptions = {
@@ -19,6 +20,7 @@ const StackNavigator = () => {
       initialRouteName={Routes.HomePage}
       screenOptions={StackScreenOptions}>
       <Stack.Screen name={Routes.HomePage} component={HomePageScreen} />
+      <Stack.Screen name={Routes.DetailPage} component={DetailPageScreen} />
     </Stack.Navigator>
   );
 };
