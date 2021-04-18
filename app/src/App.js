@@ -1,5 +1,7 @@
 import React from 'react';
 import {ThemeProvider} from 'react-native-magnus';
+import {Provider} from 'react-redux';
+import store from '@store/';
 import Navigator from './navigator';
 
 import Theme from './utils/Theme';
@@ -13,7 +15,9 @@ const App = () => {
 };
 
 export default () => (
-  <ThemeProvider theme={theme}>
-    <App />
-  </ThemeProvider>
+  <Provider store={store}>
+    <ThemeProvider theme={theme}>
+      <App />
+    </ThemeProvider>
+  </Provider>
 );

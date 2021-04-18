@@ -10,6 +10,7 @@
       "@helpers/*": ["./src/helpers/*"],
       "@layouts/*": ["src/layouts/*"],
       "@screens/*": ["./src/screens/*"],
+      "@store/*": ["./src/store/*"],
       "@typesdef/*": ["src/@types/*"],
       "@utils/*": ["./src/utils/*"]
     }

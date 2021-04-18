@@ -1,4 +1,6 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useCallback} from 'react';
+import {useSelector, useDispatch} from 'react-redux';
+import {init} from '@store/menu';
 import {FlatList} from 'react-native';
 import {Div, Snackbar, Icon} from 'react-native-magnus';
 
@@ -19,7 +21,8 @@ const DATA = [
 ];
 const snackbarRef = React.createRef();
 const HomePage = () => {
-  const [menus, setMenus] = useState([]);
+  const {menus} = useSelector(state => state.menu);
+  const dispatch = useDispatch();
   useEffect(() => {
     (async () => {
       const {success, data, message} = await find(routes.menu, {
@@ -39,11 +42,11 @@ const HomePage = () => {
             ),
           });
         }
-        setMenus(null);
+        dispatch(init(null));
       }
-      setMenus(data);
+      dispatch(init(data));
     })();
-  }, []);
+  }, [dispatch]);
   return (
     <>
       <HomeLayout>
