@@ -7,11 +7,13 @@
       "@src/*": ["./src/*"],
       "@common/*": ["./src/common/*"],
       "@components/*": ["./src/components/*"],
+      "@helpers/*": ["./src/helpers/*"],
       "@layouts/*": ["src/layouts/*"],
       "@screens/*": ["./src/screens/*"],
+      "@typesdef/*": ["src/@types/*"],
       "@utils/*": ["./src/utils/*"]
     }
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*", "src/@types/"],
   "exclude": ["node_modules"]
 }
