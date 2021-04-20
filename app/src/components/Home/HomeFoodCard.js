@@ -8,9 +8,9 @@ import {baseURL} from '@helpers/constants';
 // Components
 import UIPrice from '@components/UI/UiPrice';
 
-export default ({item, index, style, onPress, ...rest}) => {
+export default ({item, style, onPress, ...rest}) => {
   const handleOnPress = () => {
-    onPress(index);
+    onPress(item._id);
   };
   return (
     <Pressable onPress={handleOnPress}>

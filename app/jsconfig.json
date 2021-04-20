@@ -5,6 +5,7 @@
     "baseUrl": ".",
     "paths": {
       "@src/*": ["./src/*"],
+      "@animations/*": ["src/animations/*"],
       "@common/*": ["./src/common/*"],
       "@components/*": ["./src/components/*"],
       "@helpers/*": ["./src/helpers/*"],

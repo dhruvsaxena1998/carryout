@@ -7,9 +7,7 @@ export default ({goBack, style, children}) => {
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar backgroundColor={Colors.background} />
-      <ScrollView>
-        <Div m={10}>{children}</Div>
-      </ScrollView>
+      <Div m={10}>{children}</Div>
     </SafeAreaView>
   );
 };

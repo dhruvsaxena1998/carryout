@@ -1,6 +1,7 @@
-import React, {useState, useEffect, useCallback} from 'react';
-import {Div, Snackbar, Icon} from 'react-native-magnus';
+import React, {useEffect} from 'react';
+import {Div} from 'react-native-magnus';
 import {FlatList} from 'react-native';
+import LoadingIndicator from '@animations/loading';
 
 import {useSelector, useDispatch} from 'react-redux';
 import {init} from '@store/menu';
@@ -22,7 +23,6 @@ const DATA = [
   {slug: 'tiffin', label: 'Tiffins'},
   {slug: 'fast-food', label: 'Fast Food'},
 ];
-const snackbarRef = React.createRef();
 
 const HomePage = props => {
   const {menus} = useSelector(state => state.menu);
@@ -30,61 +30,49 @@ const HomePage = props => {
 
   useEffect(() => {
     (async () => {
-      const {success, data, message} = await find(routes.menu, {
-        populate: true,
-      });
+      const {success, data} = await find(routes.menu);
       if (!success) {
-        if (snackbarRef.current) {
-          snackbarRef.current.show(message, {
-            duration: 2000,
-            suffix: (
-              <Icon
-                name="checkcircle"
-                color="secondary"
-                fontSize="md"
-                fontFamily="AntDesign"
-              />
-            ),
-          });
-        }
         dispatch(init(null));
       }
       dispatch(init(data));
     })();
   }, [dispatch]);
 
-  const handleFoodCardClick = index => {
-    props.navigation.navigate(DetailPage, {index});
+  const handleFoodCardClick = _id => {
+    props.navigation.navigate(DetailPage, {_id});
   };
+
+  // Render Functions
+  if (!menus) {
+    // return error message
+  }
+
+  if (menus.length <= 0) {
+    return <LoadingIndicator />;
+  }
+
   return (
-    <>
-      <HomeLayout>
-        <Div row>
-          <FlatList
-            data={DATA}
-            horizontal={true}
-            keyExtractor={item => item.slug}
-            renderItem={({item, index}) => (
-              <HomeTagOption item={item} index={index} onPress={() => {}} />
-            )}
-          />
-        </Div>
-        <Div mt={20}>
-          <FlatList
-            data={menus}
-            keyExtractor={item => item._id}
-            renderItem={({item, index}) => (
-              <HomeFoodCard
-                item={item}
-                index={index}
-                onPress={handleFoodCardClick}
-              />
-            )}
-          />
-        </Div>
-      </HomeLayout>
-      <Snackbar ref={snackbarRef} bg="danger" color="secondary" />
-    </>
+    <HomeLayout>
+      <Div row>
+        <FlatList
+          data={DATA}
+          horizontal={true}
+          keyExtractor={item => item.slug}
+          renderItem={({item, index}) => (
+            <HomeTagOption item={item} index={index} onPress={() => {}} />
+          )}
+        />
+      </Div>
+      <Div mt={20}>
+        <FlatList
+          data={menus}
+          keyExtractor={item => item._id}
+          renderItem={({item}) => (
+            <HomeFoodCard item={item} onPress={handleFoodCardClick} />
+          )}
+        />
+      </Div>
+    </HomeLayout>
   );
 };
 export default HomePage;
