@@ -1,10 +1,10 @@
 import React from 'react';
 import {StyleSheet} from 'react-native';
-import {Div} from 'react-native-magnus';
+import {Div, Text} from 'react-native-magnus';
 import LottieView from 'lottie-react-native';
 
 const styles = StyleSheet.create({
-  loading: {
+  error: {
     height: 200,
     width: 200,
   },
@@ -19,11 +19,14 @@ export default () => {
       justifyContent="center"
       alignItems="center">
       <LottieView
-        source={require('./loading.json')}
+        source={require('./error.json')}
         autoPlay
         loop
-        style={styles.loading}
+        style={styles.error}
       />
+      <Text color="danger" fontSize="4xl" fontWeight="bold">
+        Something went wrong!
+      </Text>
     </Div>
   );
 };

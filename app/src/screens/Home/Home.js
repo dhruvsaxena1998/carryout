@@ -1,7 +1,8 @@
 import React, {useEffect} from 'react';
 import {Div} from 'react-native-magnus';
 import {FlatList} from 'react-native';
-import LoadingIndicator from '@animations/loading';
+
+import {LoadingIndicator, ErrorIndicator} from '@animations';
 
 import {useSelector, useDispatch} from 'react-redux';
 import {init} from '@store/menu';
@@ -44,7 +45,7 @@ const HomePage = props => {
 
   // Render Functions
   if (!menus) {
-    // return error message
+    return <ErrorIndicator />;
   }
 
   if (menus.length <= 0) {

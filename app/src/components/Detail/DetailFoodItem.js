@@ -1,9 +1,12 @@
 import React from 'react';
 import {Button, Div, Text, Icon} from 'react-native-magnus';
 
-export default ({item, index, slug, onPress}) => {
+export default ({item, slug, index, onPress}) => {
   const handleOnMinusPress = () => {
-    onPress(slug, index, 'minus');
+    onPress({which: index, what: 'minus', where: slug});
+  };
+  const handleOnAddPress = () => {
+    onPress({which: index, what: 'add', where: slug});
   };
   return (
     <Div
@@ -11,15 +14,16 @@ export default ({item, index, slug, onPress}) => {
       row
       mt={5}
       mb={15}
-      p={15}
+      px={15}
+      py={10}
       rounded={15}
       alignItems="center">
       <Div flex={1}>
         <Text color="foreground" fontSize="xl" fontWeight="700">
-          Mix Daal
+          {item.name}
         </Text>
-        <Text color="accent" fontSize="md">
-          20/p
+        <Text color="accent" fontSize="md" fontWeight="700">
+          ₹ {item.price}/p
         </Text>
       </Div>
       <Div
@@ -30,13 +34,13 @@ export default ({item, index, slug, onPress}) => {
         justifyContent="space-between"
         rounded="xl"
         bg="background">
-        <Button bg="secondary" rounded="md">
+        <Button bg="secondary" rounded="md" onPress={handleOnMinusPress}>
           <Icon name="minus" fontFamily="Feather" />
         </Button>
         <Text color="accent" fontSize="xl" fontWeight="bold">
-          10
+          {item.currentQty}
         </Text>
-        <Button bg="secondary" rounded="md">
+        <Button bg="secondary" rounded="md" onPress={handleOnAddPress}>
           <Icon name="plus" fontFamily="Feather" />
         </Button>
       </Div>

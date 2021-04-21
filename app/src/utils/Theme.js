@@ -3,7 +3,7 @@ export const Colors = {
   foreground: '#F7F7F7',
   secondary: '#2D2D2D',
   accent: '#FFE598',
-  danger: '#e53e3e',
+  danger: '#f3564d',
 };
 
 export const FontFamily = {
