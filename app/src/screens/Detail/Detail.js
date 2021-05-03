@@ -15,6 +15,7 @@ import DetailLayout from '@src/layouts/DetailLayout';
 import UIPrice from '@components/UI/UiPrice';
 import DetailImageCard from '@components/Detail/DetailImageCard';
 import DetailFoodItem from '@components/Detail/DetailFoodItem';
+import DetailCheckoutModal from '@components/Detail/DetailCheckoutModal';
 
 const DetailPage = props => {
   const {_id} = props.route.params;
@@ -42,7 +43,6 @@ const DetailPage = props => {
     });
     return __price;
   };
-
   /**
    *
    * @param {Number} which index
@@ -130,71 +130,11 @@ const DetailPage = props => {
           badge={currentMenu.price !== price}
         />
       </Div>
-      <Modal
+      <DetailCheckoutModal
         isVisible={modalVisible}
-        bg="secondary"
-        h={420} // 420 (on error)
-        onSwipeComplete={() => setModalVisible(false)}
-        swipeDirection="down">
-        <Div py="xl" px="md" justifyContent="flex-end">
-          {/* Promo */}
-          <Div borderBottomWidth={2} borderBottomColor="accent" pb="2xl">
-            <Text ml="md" color="accent" fontSize="2xl" fontWeight="bold">
-              Offers
-            </Text>
-            <Div row mt="md">
-              <Input
-                p={10}
-                bg="background"
-                color="foreground"
-                borderWidth={0}
-                placeholder="Promo Code"
-                flex={1}
-                mr={10}
-              />
-              <Button bg="background" color="accent" shadow="xl">
-                Apply
-              </Button>
-            </Div>
-            <Text mt="md" ml="md" color="danger">
-              Invalid promo code!
-            </Text>
-          </Div>
-          {/* Item Information */}
-          <Div mt="2xl">
-            <Text ml="md" color="accent" fontSize="2xl" fontWeight="bold">
-              Confirm checkout!
-            </Text>
-            <Div px="md" row justifyContent="space-between">
-              <Text color="foreground" fontSize="xl">
-                Thali 1
-              </Text>
-              <Text color="foreground" fontSize="xl">
-                62
-              </Text>
-            </Div>
-            <Div px="md" row justifyContent="space-between">
-              <Text color="foreground" fontSize="xl">
-                Additional 1
-              </Text>
-              <Text color="foreground" fontSize="xl">
-                3
-              </Text>
-            </Div>
-            <Div px="md" row justifyContent="space-between">
-              <Text color="accent" fontSize="xl" fontWeight="bold">
-                Grand Total
-              </Text>
-              <Text color="accent" fontSize="xl">
-                65
-              </Text>
-            </Div>
-          </Div>
-          <Button mt="xl" bg="accent" color="secondary" block rounded="xl">
-            Checkout
-          </Button>
-        </Div>
-      </Modal>
+        item={{...currentMenu, defaultPrice: price}}
+        hide={() => setModalVisible(false)}
+      />
     </>
   );
 };
