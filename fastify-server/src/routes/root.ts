@@ -1,9 +1,20 @@
-import { FastifyPluginAsync } from 'fastify'
+import {
+  FastifyPluginAsync,
+  FastifyInstance,
+  FastifyRequest,
+  FastifyReply,
+} from "fastify";
 
-const root: FastifyPluginAsync = async (fastify, opts): Promise<void> => {
-  fastify.get('/', async function (request, reply) {
-    return { root: true }
-  })
-}
+const root: FastifyPluginAsync = async (
+  server: FastifyInstance,
+  opts
+): Promise<void> => {
+  server.get(
+    "/",
+    async function (request: FastifyRequest, reply: FastifyReply) {
+      return { root: true };
+    }
+  );
+};
 
 export default root;
