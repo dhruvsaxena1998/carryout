@@ -1,10 +1,9 @@
-import 'dotenv/config';
+import "dotenv/config";
 
-import express from 'express';
-import cors from 'cors';
-import path from 'path';
+import express from "express";
+import cors from "cors";
 
-import connection from '@config/database'
+import connection from "@config/database";
 import router from "@router";
 
 const app = express();
@@ -18,12 +17,17 @@ app.use("/uploads", express.static("public/uploads/"));
 app.use("/api/v1/", router);
 
 const PORT = process.env.PORT || 5000;
-connection().then(() => {
+connection.connect((err) => {
+  if (err) {
+    console.error(err);
+    process.exit(1);
+  }
+  connection.test();
   app.listen(PORT, (err) => {
     if (err) {
-      return console.error(err);
+      console.error(err);
+      process.exit(1);
     }
-
     console.log(`Server is up and running on http://localhost:${PORT}`);
   });
 });
