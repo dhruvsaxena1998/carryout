@@ -10,7 +10,8 @@
       "@functions/*": ["./src/functions/*"],
       "@policies/*": ["src/policies/*"],
       "@config/*": ["./src/config/*"],
-      "@api/v1/*": ["./src/api/v1/*"]
+      "@api/v1/*": ["./src/api/v1/*"],
+      "@api/v2/*": ["./src/api/v2/*"]
     }
   },
   "include": ["src/**/*"],

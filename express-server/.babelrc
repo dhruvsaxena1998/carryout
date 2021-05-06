@@ -12,7 +12,8 @@
           "@utils": "./src/utils/",
           "@functions": "./src/functions/",
           "@config": "./src/config/",
-          "@api/v1": "./src/api/v1/"
+          "@api/v1": "./src/api/v1/",
+          "@api/v2": "./src/api/v2/"
         }
       }
     ]

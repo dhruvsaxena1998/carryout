@@ -1,0 +1,11 @@
+{
+  "@type": "table",
+  "name": "#tablename#",
+  "schema": {
+    "id": {
+      "type": "int",
+      "primary": true,
+      "auto_increment": true
+    }
+  }
+}

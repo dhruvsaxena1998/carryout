@@ -1,0 +1,37 @@
+{
+  "@type": "table",
+  "name": "item",
+  "schema": {
+    "id": {
+      "type": "int",
+      "primary": true,
+      "auto_increment": true
+    },
+    "name": {
+      "type": "varchar(255)",
+      "null": false
+    },
+    "slug": {
+      "type": "varchar(255)",
+      "null": false,
+      "unique": true
+    },
+    "price": {
+      "type": "decimal(10, 2)",
+      "null": false
+    },
+    "currentQty": {
+      "type": "int",
+      "null": false
+    },
+    "defaultQty": {
+      "type": "int",
+      "null": false
+    },
+    "maxQty": {
+      "type": "int",
+      "null": false,
+      "default": 1
+    }
+  }
+}

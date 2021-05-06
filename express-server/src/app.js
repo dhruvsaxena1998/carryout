@@ -17,6 +17,7 @@ app.use("/uploads", express.static("public/uploads/"));
 app.use("/api/v1/", router);
 
 const PORT = process.env.PORT || 5000;
+
 connection.connect((err) => {
   if (err) {
     console.error(err);
