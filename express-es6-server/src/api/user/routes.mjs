@@ -1,8 +1,8 @@
 import { Router as _Router } from "express";
 const Router = _Router();
 
-Router.get("/", (req, res) => {
-  res.send({ user: true });
-});
+import Controller from "./controller.mjs";
+
+Router.get("/", Controller.index);
 
 export default Router;
