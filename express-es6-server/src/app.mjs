@@ -5,12 +5,14 @@ import cors from "cors";
 
 import database from "./config/database.mjs";
 import router from "./router.mjs";
+import logger from "./middlewares/logger.mjs"
 
 const app = express();
 
 // Middlewares
 app.use(cors());
 app.use(express.json());
+app.use(logger);
 
 app.use("/api", router);
 app.use("/public", express.static("public/"));
