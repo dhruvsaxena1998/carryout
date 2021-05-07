@@ -1,18 +1,48 @@
 import connection from "../../config/database.mjs";
+import { slugify } from "../../utils/common.mjs";
 
 export const find = async (req, res) => {
   try {
-    const query = `SELECT * FROM ITEM`;
-    const [results] = await connection.query(query);
+    const { limit = 10, offset = 0 } = req.query;
 
-    res.send(results);
+    const query = `SELECT * FROM ITEM LIMIT ${limit} OFFSET ${offset}`;
+    const countQuery = `SELECT COUNT(*) as count FROM ITEM`;
+
+    const [[results], [[{ count }]]] = await Promise.all([
+      connection.query(query),
+      connection.query(countQuery),
+    ]);
+
+    res.send({
+      results,
+      pagination: {
+        count, limit, offset
+      },
+    });
   } catch (err) {
-    console.log(err);
     res.status(500).send(err.message);
   }
 };
 
 export const create = async (req, res) => {
-}
+  try {
+    const { name, price, currentQty, defaultQty, maxQty = 1 } = req.body;
+
+    const query = "INSERT INTO ITEM SET ?";
+    const data = {
+      name,
+      slug: slugify(name),
+      price,
+      currentQty,
+      defaultQty,
+      maxQty,
+    };
+
+    await connection.query(query, data);
+    res.status(201).send({ success: true, data });
+  } catch (err) {
+    res.status(500).send(err.message);
+  }
+};
 
 export default { find, create };
