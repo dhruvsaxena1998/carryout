@@ -1,0 +1,35 @@
+{
+  "name": "carryout-server",
+  "version": "1.0.0",
+  "description": "express es6 server for carryout",
+  "main": "src/app.js",
+  "type": "module",
+  "scripts": {
+    "dev": "nodemon"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dhruvsaxena1998/carryout.git"
+  },
+  "keywords": [
+    "carryout"
+  ],
+  "author": "dhruvsaxena1998",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dhruvsaxena1998/carryout/issues"
+  },
+  "homepage": "https://github.com/dhruvsaxena1998/carryout#readme",
+  "devDependencies": {
+    "@babel/core": "^7.14.0",
+    "@babel/node": "^7.13.13",
+    "@babel/preset-env": "^7.14.1",
+    "@babel/preset-flow": "^7.13.13",
+    "nodemon": "^2.0.7"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^9.0.0",
+    "express": "^4.17.1"
+  }
+}

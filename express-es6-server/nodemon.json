@@ -1,0 +1,6 @@
+{
+  "watch": ["src"],
+  "ext": ".json,.js,.mjs",
+  "ignore": [],
+  "exec": "babel-node src/app.mjs"
+}
