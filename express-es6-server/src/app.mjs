@@ -3,6 +3,7 @@ import "dotenv/config";
 import express from "express";
 import cors from "cors";
 
+import database from "./config/database.mjs";
 import router from "./router.mjs";
 
 const app = express();
