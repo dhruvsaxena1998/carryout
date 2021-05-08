@@ -28,7 +28,7 @@ export const create = async (req, res) => {
   try {
     const { name, price, currentQty, defaultQty, maxQty = 1 } = req.body;
 
-    const query = "INSERT INTO ITEM SET ?";
+    const query = `INSERT INTO ITEM SET ?`;
     const data = {
       name,
       slug: slugify(name),

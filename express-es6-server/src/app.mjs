@@ -2,17 +2,16 @@ import "dotenv/config";
 
 import express from "express";
 import cors from "cors";
-
+import morgan from 'morgan'
 import database from "./config/database.mjs";
 import router from "./router.mjs";
-import logger from "./middlewares/logger.mjs"
 
 const app = express();
 
 // Middlewares
 app.use(cors());
 app.use(express.json());
-app.use(logger);
+app.use(morgan(':method :url | :status | :response-time ms'))
 
 app.use("/api", router);
 app.use("/public", express.static("public/"));
