@@ -42,7 +42,7 @@ export const findOne = async (req, res) => {
 
     const [[menu]] = await connection.query(query);
     if (!menu) {
-      res.status(404).send({ message: "Menu not found!" });
+      return res.status(404).send({ message: "Menu not found!" });
     }
 
     const itemsQuery = `
