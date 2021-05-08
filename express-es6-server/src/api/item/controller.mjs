@@ -16,7 +16,9 @@ export const find = async (req, res) => {
     res.send({
       results,
       pagination: {
-        count, limit, offset
+        count,
+        limit,
+        offset,
       },
     });
   } catch (err) {
@@ -26,20 +28,19 @@ export const find = async (req, res) => {
 
 export const create = async (req, res) => {
   try {
-    const { name, price, currentQty, defaultQty, maxQty = 1 } = req.body;
+    const { name, price, defaultQty, maxQty = 1 } = req.body;
 
     const query = `INSERT INTO ITEM SET ?`;
     const data = {
       name,
       slug: slugify(name),
       price,
-      currentQty,
       defaultQty,
       maxQty,
     };
 
-    await connection.query(query, data);
-    res.status(201).send({ success: true, data });
+    const [result] = await connection.query(query, data);
+    res.status(201).send({ success: true, id: result.insertId, ...data });
   } catch (err) {
     res.status(500).send(err.message);
   }
