@@ -2,15 +2,12 @@
   "name": "carryout-server",
   "version": "1.0.0",
   "description": "express es6 server for carryout",
-  "main": "src/app.js",
+  "main": "server.mjs",
   "type": "module",
   "scripts": {
     "dev": "nodemon"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/dhruvsaxena1998/carryout.git"
-  },
+  "repository": "git+https://github.com/dhruvsaxena1998/carryout.git",
   "keywords": [
     "carryout"
   ],
