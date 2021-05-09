@@ -4,7 +4,7 @@ export const create = (req, res, next) => {
   const schema = Joi.object({
     name: Joi.string().required(),
     price: Joi.number().required().positive(),
-    defaultQty: Joi.number().required().positive(),
+    defaultQty: Joi.number().required().positive().allow(0),
     maxQty: Joi.number().positive().default(1),
   });
 

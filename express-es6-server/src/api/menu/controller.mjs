@@ -13,7 +13,7 @@ export const find = async (req, res) => {
       FROM MENU
       LEFT JOIN media on media = media.id
       LIMIT ${limit} OFFSET ${offset};
-  `;
+    `;
     const countQuery = `SELECT COUNT(*) as count FROM MENU`;
 
     const [[results], [[{ count }]]] = await Promise.all([
@@ -57,9 +57,15 @@ export const findOne = async (req, res) => {
     }
 
     const menu = _.pick(results[0], [ "id", "name", "slug", "price", "description", "media" ]);
-    const items = results.map((result) =>
-      _.pickBy(result, (value, key) => key.includes("_"))
-    );
+    const items = results.map((item) => ({
+      id: item["_id"],
+      name: item["_name"],
+      slug: item["_slug"],
+      price: item["_price"],
+      defaultQty: item["_defaultQty"],
+      maxQty: item["_maxQty"],
+      category: item["_category"]
+    }));
 
     res.send({
       ...menu,

@@ -1,0 +1,25 @@
+@url = http://localhost:1337/api
+
+### Get menus
+GET {{url}}/menus
+
+### Get a menu with populated items
+GET {{url}}/menus/1
+
+### Create menu
+POST {{url}}/menus
+Content-Type: application/json
+
+{
+  "name": "Thali 1",
+  "description": "Mix daal and vegetable with salad",
+  "price": "58",
+  "media": 1,
+  "items": [
+    { "id": "1", "category": "item" },
+    { "id": "2", "category": "item" },
+    { "id": "3", "category": "item" },
+    { "id": "4", "category": "optional" },
+    { "id": "5", "category": "optional" }
+  ]
+}

@@ -1,0 +1,16 @@
+@url = http://localhost:1337/api
+
+### Get all items
+GET {{url}}/items
+
+
+### Add item
+POST {{url}}/items
+Content-Type: application/json
+
+{
+  "name": "Salad",
+  "price": 10,
+  "defaultQty": 0,
+  "maxQty": 2
+}
