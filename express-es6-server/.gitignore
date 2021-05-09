@@ -2,3 +2,5 @@ node_modules/
 
 # Logs
 *_logs.txt
+
+uploads/*.jpg

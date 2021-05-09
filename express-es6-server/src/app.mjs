@@ -15,6 +15,7 @@ app.use(morgan(':method :url | :status | :response-time ms'))
 
 app.use("/api", router);
 app.use("/public", express.static("public/"));
+app.use("/uploads", express.static("uploads/"));
 
 app.get("/", function (req, res) {
   res.send({ root: true });
