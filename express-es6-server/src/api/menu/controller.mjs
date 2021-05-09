@@ -1,20 +1,19 @@
 import connection from "../../config/database.mjs";
-import { slugify } from "../../utils/common.mjs";
+import { slugify, sqlPagination } from "../../utils/common.mjs";
 import _ from "lodash";
-
-const findMenuQuery = `
-  SELECT
-    menu.id, menu.name, menu.slug, menu.description, menu.price,
-    media.url as media
-  FROM MENU
-  LEFT JOIN media on media = media.id
-`;
 
 export const find = async (req, res) => {
   try {
-    const { limit = 10, offset = 0 } = req.query;
+    const { limit, offset } = sqlPagination(req.query);
 
-    const query = findMenuQuery + `LIMIT ${limit} OFFSET ${offset};`;
+    const query = `
+      SELECT
+        menu.id, menu.name, menu.slug, menu.description, menu.price,
+        media.url as media
+      FROM MENU
+      LEFT JOIN media on media = media.id
+      LIMIT ${limit} OFFSET ${offset};
+  `;
     const countQuery = `SELECT COUNT(*) as count FROM MENU`;
 
     const [[results], [[{ count }]]] = await Promise.all([
@@ -38,32 +37,33 @@ export const find = async (req, res) => {
 export const findOne = async (req, res) => {
   try {
     const { id } = req.params;
-    const query = findMenuQuery + `WHERE menu.id = ${id}`;
+    const query = `
+      SELECT
+          m.id, m.name, m.slug, m.description, m.price,
+          i.id as _id, i.name as _name, i.slug as _slug, i.price as _price, i.defaultQty as _defaultQty, i.maxQty as _maxQty,
+          media.url as media,
+          mi.category as _category
+      FROM MENU as m
+      LEFT JOIN media on media = media.id
+      LEFT JOIN menu_items as mi on mi.menu_id = m.id
+      RIGHT JOIN item as i on i.id = mi.item_id
+      WHERE m.id = ${id}
+    `;
 
-    const [[menu]] = await connection.query(query);
-    if (!menu) {
+    const [results] = await connection.query(query);
+
+    if (results.length <= 0) {
       return res.status(404).send({ message: "Menu not found!" });
     }
 
-    const itemsQuery = `
-      SELECT
-        i.id, i.name, i.slug, i.price, i.defaultQty, i.maxQty,
-        mi.category as category
-      FROM menu_items as mi
-      LEFT JOIN item as i on i.id = mi.item_id
-      where mi.menu_id = ${menu.id}
-    `;
-
-    const [results] = await connection.query(itemsQuery);
-    const [items, optional] = _.partition(
-      results,
-      (n) => n.category === "item"
+    const menu = _.pick(results[0], [ "id", "name", "slug", "price", "description", "media" ]);
+    const items = results.map((result) =>
+      _.pickBy(result, (value, key) => key.includes("_"))
     );
 
     res.send({
       ...menu,
       items,
-      optional,
     });
   } catch (err) {
     res.status(500).send(err);

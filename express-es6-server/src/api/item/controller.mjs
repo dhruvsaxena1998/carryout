@@ -1,9 +1,9 @@
 import connection from "../../config/database.mjs";
-import { slugify } from "../../utils/common.mjs";
+import { slugify, sqlPagination } from "../../utils/common.mjs";
 
 export const find = async (req, res) => {
   try {
-    const { limit = 10, offset = 0 } = req.query;
+    const { limit, offset } = sqlPagination(req.query);
 
     const query = `SELECT * FROM ITEM LIMIT ${limit} OFFSET ${offset}`;
     const countQuery = `SELECT COUNT(*) as count FROM ITEM`;
