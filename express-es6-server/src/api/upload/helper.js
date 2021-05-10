@@ -1,7 +1,7 @@
 import multer from "multer";
 import path from "path";
 
-import { randomAlphaNumeric } from "../../utils/common.mjs";
+import { randomAlphaNumeric } from "../../utils/common.js";
 
 export const storage = multer.diskStorage({
   destination: (req, file, callback) => {

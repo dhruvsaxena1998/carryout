@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import secret from "../config/jwt.mjs";
+import secret from "../config/jwt.js";
 
 export const issue = (id) => {
   return jwt.sign({ id }, secret.jwt, { expiresIn: secret.expires });

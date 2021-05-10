@@ -1,5 +1,5 @@
-import connection from "../../config/database.mjs";
-import ErrorGenerator from "../../helpers/error.mjs";
+import connection from "../../config/database.js";
+import ErrorGenerator from "../../helpers/error-generator.js";
 
 export const upload = async (req, res) => {
   try {

@@ -2,5 +2,5 @@
   "watch": ["src"],
   "ext": ".json,.js,.mjs",
   "ignore": [],
-  "exec": "babel-node server.mjs"
+  "exec": "babel-node server.js"
 }

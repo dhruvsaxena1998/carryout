@@ -1,5 +1,5 @@
-import connection from "../../config/database.mjs";
-import { slugify, sqlPagination } from "../../utils/common.mjs";
+import connection from "../../config/database.js";
+import { slugify, sqlPagination } from "../../utils/common.js";
 import _ from "lodash";
 
 export const find = async (req, res) => {

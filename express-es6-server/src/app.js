@@ -4,8 +4,8 @@ import express from "express";
 import cors from "cors";
 import morgan from "morgan";
 
-import router from "./router.mjs";
-import database from "./config/database.mjs";
+import router from "./router.js";
+import database from "./config/database.js";
 
 const app = express();
 

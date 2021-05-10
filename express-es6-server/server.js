@@ -1,4 +1,4 @@
-import app from "./src/app.mjs";
+import app from "./src/app.js";
 
 const SERVERPORT = process.env.SERVER_PORT || 3000;
 app.listen(SERVERPORT, (err) => {

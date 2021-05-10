@@ -10,7 +10,7 @@ export const create = (req, res, next) => {
       .items(
         Joi.object({
           id: Joi.number().required(),
-          category: Joi.string().required(),
+          category: Joi.string().default("item"),
         })
       )
       .required(),

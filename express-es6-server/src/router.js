@@ -1,10 +1,10 @@
 import { Router as _Router } from "express";
 const Router = _Router();
 
-import ItemRoutes from "./api/item/routes.mjs";
-import MenuRoutes from "./api/menu/routes.mjs";
-import UserRoutes from "./api/user/routes.mjs";
-import UploadRoutes from "./api/upload/routes.mjs";
+import ItemRoutes from "./api/item/routes.js";
+import MenuRoutes from "./api/menu/routes.js";
+import UserRoutes from "./api/user/routes.js";
+import UploadRoutes from "./api/upload/routes.js";
 
 Router.use("/items", ItemRoutes);
 Router.use("/menus", MenuRoutes);

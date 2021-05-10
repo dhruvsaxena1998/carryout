@@ -1,9 +1,9 @@
 import { Router as _Router } from "express";
 const Router = _Router();
 
-import Controller from "./controller.mjs";
+import Controller from "./controller.js";
 
-import { Upload } from "./helper.mjs";
+import { Upload } from "./helper.js";
 
 /**
  * @route   /api/upload
