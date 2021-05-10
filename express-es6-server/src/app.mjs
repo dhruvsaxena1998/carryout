@@ -19,7 +19,17 @@ app.use("/public", express.static("public/"));
 app.use("/uploads", express.static("uploads/"));
 
 app.get("/", function (req, res) {
-  res.send({ root: true });
+  const { hostname, protocol } = req;
+  res.send({
+    root: true,
+    hostname,
+    protocol,
+    static: {
+      public: "/public",
+      uploads: "/uploads",
+    },
+    env: process.env.NODE_ENV || "development",
+  });
 });
 
 export default app;
