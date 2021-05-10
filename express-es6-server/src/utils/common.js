@@ -16,6 +16,8 @@ export const randomAlphaNumeric = (length) => {
   return s.slice(0, length);
 };
 
+export const randomOTP = () => Math.floor(Math.random() * 899999 + 100000)
+
 export const sqlPagination = (query) => ({
   limit: parseInt(query.limit) || 10,
   offset: parseInt(query.offset) || 0,
