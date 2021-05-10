@@ -16,6 +16,12 @@ create table if not exists media (
   url text not null
 );
 
+-- @block { role }
+create table if not exists role (
+  id int primary key auto_increment,
+  name varchar(255) not null
+);
+
 -- @block { user }
 create table if not exists user (
   id int primary key auto_increment,
@@ -26,9 +32,11 @@ create table if not exists user (
   password text not null,
   media int,
   reset_token text,
+  role int not null default 1,
   otp int,
   is_verified bool default false,
-  foreign key (media) references media(id)
+  foreign key (media) references media(id),
+  foreign key (role) references role(id)
 );
 
 -- @block { addresses }

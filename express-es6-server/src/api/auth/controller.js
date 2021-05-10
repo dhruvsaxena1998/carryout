@@ -68,7 +68,7 @@ export const register = async (req, res) => {
       email,
       username: email,
       otp: randomOTP(),
-      is_verified: false,
+      is_verified: false
     };
 
     const query = `INSERT INTO USER SET ?`;

@@ -4,7 +4,7 @@
 GET {{url}}/menus
 
 ### Get a menu with populated items
-GET {{url}}/menus/1
+GET {{url}}/menus/2
 
 ### Create menu
 POST {{url}}/menus
