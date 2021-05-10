@@ -1,8 +1,8 @@
 import jwt from "jsonwebtoken";
 import secret from "../config/jwt.js";
 
-export const issue = ({ id, email }) => {
-  return jwt.sign({ id, email }, secret.jwt, {
+export const issue = (payload) => {
+  return jwt.sign(payload, secret.jwt, {
     expiresIn: secret.expires,
   });
 };

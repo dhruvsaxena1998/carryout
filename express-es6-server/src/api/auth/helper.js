@@ -11,16 +11,3 @@ export const hash = (password, rounds = saltRounds) => {
 export const verifyPassword = (password, hash) => {
   return bcrypt.compareSync(password, hash);
 };
-
-export const sanitizeUser = (user) => {
-  return _.pick(user, [
-    "id",
-    "name",
-    "phone",
-    "email",
-    "username",
-    "role",
-    "media",
-    "is_verified",
-  ]);
-};

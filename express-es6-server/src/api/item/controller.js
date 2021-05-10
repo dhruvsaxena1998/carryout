@@ -22,7 +22,7 @@ export const find = async (req, res) => {
       },
     });
   } catch (err) {
-    res.status(500).send(err.message);
+    res.status(500).send({ message: err.message });
   }
 };
 
@@ -42,7 +42,7 @@ export const create = async (req, res) => {
     const [result] = await connection.query(query, data);
     res.status(201).send({ success: true, id: result.insertId, ...data });
   } catch (err) {
-    res.status(500).send(err.message);
+    res.status(500).send({ message: err.message });
   }
 };
 

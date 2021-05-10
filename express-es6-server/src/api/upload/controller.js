@@ -28,7 +28,7 @@ export const upload = async (req, res) => {
       id: result.insertId,
     });
   } catch (err) {
-    res.status(500).send(err.message);
+    res.status(500).send({ message: err.message });
   }
 };
 export default { upload };

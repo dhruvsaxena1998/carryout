@@ -3,7 +3,9 @@ import connection from "../../config/database.js";
 import { issue } from "../../utils/jsonwebtoken.js";
 import { randomOTP } from "../../utils/common.js";
 
-import { hash, verifyPassword, sanitizeUser } from "./helper.js";
+import { hash, verifyPassword } from "./helper.js";
+
+import SanitizeUser from "../../helpers/error-generator.js";
 import ErrorGenerator from "../../helpers/error-generator.js";
 
 export const login = async (req, res) => {
@@ -53,9 +55,9 @@ export const login = async (req, res) => {
       );
     }
 
-    res.send(sanitizeUser({ ...user, is_verified: Boolean(user.is_verified) }));
+    res.send(SanitizeUser(user));
   } catch (err) {
-    res.status(500).send(err.message);
+    res.status(500).send({ message: err.message });
   }
 };
 
@@ -70,7 +72,7 @@ export const register = async (req, res) => {
       email,
       username: email,
       otp: randomOTP(),
-      is_verified: false
+      is_verified: false,
     };
 
     const query = `INSERT INTO USER SET ?`;
@@ -83,7 +85,7 @@ export const register = async (req, res) => {
       is_verified: false,
     });
   } catch (err) {
-    res.status(500).send(err.message);
+    res.status(500).send({ message: err.message });
   }
 };
 
@@ -115,13 +117,13 @@ export const verifyOTP = async (req, res) => {
     const updateQuery = `UPDATE USER SET ? WHERE phone = ${phone}`;
     await connection.query(updateQuery, data);
 
-    const jwt = issue({ id: user.id, email: user.email });
+    const jwt = issue({ id: user.id, email: user.email, role: user.role });
     res.send({
       jwt,
-      user: sanitizeUser({ ...user, is_verified: Boolean(user.is_verified) }),
+      user: SanitizeUser(user)
     });
   } catch (err) {
-    res.status(500).send(err.message);
+    res.status(500).send({ message: err.message });
   }
 };
 export default { login, register, verifyOTP };

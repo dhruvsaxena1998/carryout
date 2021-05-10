@@ -30,7 +30,7 @@ export const find = async (req, res) => {
       },
     });
   } catch (err) {
-    res.status(500).send(err.message);
+    res.status(500).send({ message: err.message });
   }
 };
 
@@ -72,7 +72,7 @@ export const findOne = async (req, res) => {
       items,
     });
   } catch (err) {
-    res.status(500).send(err.message);
+    res.status(500).send({ message: err.message });
   }
 };
 
@@ -96,7 +96,7 @@ export const create = async (req, res) => {
       ...data,
     });
   } catch (err) {
-    res.status(500).send(err.message);
+    res.status(500).send({ message: err.message });
   }
 };
 
