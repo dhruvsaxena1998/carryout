@@ -19,6 +19,7 @@ export const sanitizeUser = (user) => {
     "phone",
     "email",
     "username",
+    "role",
     "media",
     "is_verified",
   ]);

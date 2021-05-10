@@ -12,10 +12,12 @@ export const login = async (req, res) => {
 
     const query = `
       SElECT
-        user.id, name, phone, username, email, password, is_verified, otp,
-        media.url as media
+        user.id, user.name, user.phone, user.username, user.email, user.password, user.is_verified, user.otp,
+        media.url as media,
+        role.name as role
       FROM USER
       LEFT JOIN media on media.id = media
+      LEFT JOIN role on role.id = role
       WHERE phone = ${phone};
     `;
     const [[user]] = await connection.query(query);
@@ -51,7 +53,7 @@ export const login = async (req, res) => {
       );
     }
 
-    res.send(sanitizeUser(user));
+    res.send(sanitizeUser({ ...user, is_verified: Boolean(user.is_verified) }));
   } catch (err) {
     res.status(500).send(err.message);
   }
@@ -91,9 +93,11 @@ export const verifyOTP = async (req, res) => {
 
     const query = `
       SELECT
-        user.id, name, phone, username, email, is_verified,
+        user.id, user.name, user.phone, user.username, user.email, user.is_verified,
+        role.name as role,
         media.url as media
       FROM USER
+      LEFT JOIN role on role.id = role
       LEFT JOIN media on media.id = media
       WHERE phone = ${phone} AND otp = ${otp}
     `;
@@ -106,8 +110,7 @@ export const verifyOTP = async (req, res) => {
         .send(ErrorGenerator("OTP is invalid", "any.invalid", "otp"));
     }
 
-    const data = { otp: null };
-    if (!user.is_verified) data.is_verified = true;
+    const data = { otp: null, is_verified: true };
 
     const updateQuery = `UPDATE USER SET ? WHERE phone = ${phone}`;
     await connection.query(updateQuery, data);
@@ -115,7 +118,7 @@ export const verifyOTP = async (req, res) => {
     const jwt = issue({ id: user.id, email: user.email });
     res.send({
       jwt,
-      user: sanitizeUser(user),
+      user: sanitizeUser({ ...user, is_verified: Boolean(user.is_verified) }),
     });
   } catch (err) {
     res.status(500).send(err.message);
