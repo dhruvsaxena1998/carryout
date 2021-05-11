@@ -1,5 +1,4 @@
 import bcrypt from "bcryptjs";
-import _ from "lodash";
 
 const saltRounds = 12;
 

@@ -1,16 +1,16 @@
 import connection from "../../config/database.js";
+
+// Helpers
+import Queries from "../../utils/queries.js";
 import { slugify, sqlPagination } from "../../utils/common.js";
 
 export const find = async (req, res) => {
   try {
     const { limit, offset } = sqlPagination(req.query);
 
-    const query = `SELECT * FROM ITEM LIMIT ${limit} OFFSET ${offset}`;
-    const countQuery = `SELECT COUNT(*) as count FROM ITEM`;
-
     const [[results], [[{ count }]]] = await Promise.all([
-      connection.query(query),
-      connection.query(countQuery),
+      connection.query(Queries.item.getItemsPagination(limit, offset)),
+      connection.query(Queries.item.getItemCount()),
     ]);
 
     res.send({
@@ -29,8 +29,6 @@ export const find = async (req, res) => {
 export const create = async (req, res) => {
   try {
     const { name, price, defaultQty, maxQty = 1 } = req.body;
-
-    const query = `INSERT INTO ITEM SET ?`;
     const data = {
       name,
       slug: slugify(name),
@@ -39,7 +37,7 @@ export const create = async (req, res) => {
       maxQty,
     };
 
-    const [result] = await connection.query(query, data);
+    const [result] = await connection.query(Queries.item.insertItem(), data);
     res.status(201).send({ success: true, id: result.insertId, ...data });
   } catch (err) {
     res.status(500).send({ message: err.message });

@@ -1,6 +1,8 @@
 import connection from "../config/database.js";
 import { verify } from "../utils/jsonwebtoken.js";
-import SanitizeUser from "../helpers/sanitize-user.js";
+
+// Helpers
+import Sanitize from "../helpers/sanitize.js";
 import ErrorGenerator from "../helpers/error-generator.js";
 
 const error = ErrorGenerator(
@@ -38,7 +40,7 @@ export default (roles = []) => {
       const [[user]] = await connection.query(query);
 
       req.state = {
-        user: SanitizeUser(user),
+        user: Sanitize(user, { model: 'user' }),
       };
 
       next();

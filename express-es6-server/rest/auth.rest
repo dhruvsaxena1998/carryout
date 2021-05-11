@@ -1,0 +1,29 @@
+@url = http://localhost:1337/api
+
+### Register
+POST {{url}}/auth/register
+Content-Type: application/json
+
+{
+	"phone":"9912345678",
+	"password": "super-secret",
+	"email": "someone@example.com"
+}
+
+### Login
+POST {{url}}/auth/login
+Content-Type: application/json
+
+{
+  "phone":"9912345678",
+  "password": "super-secret"
+}
+
+### Verify
+POST {{url}}/auth/verify
+Content-Type: application/json
+
+{
+  "phone":"9912345678",
+  "otp": "891627"
+}
