@@ -4,7 +4,7 @@ import cors from "cors";
 import morgan from "morgan";
 
 import routes from "./routes";
-import database, { VerifyDB } from "./config/database";
+import { VerifyDB } from "./config/database";
 
 const app = express();
 
