@@ -1,13 +1,14 @@
-import { Request, Response } from "express";
-import { RowDataPacket } from "mysql2";
-import Connection from "../../config/database";
+import { client } from "../../config/database";
 
 // Types
-import { LoginRequestBody } from "./model";
+import { Request, Response } from "express";
+import { RowDataPacket, Connection } from "mysql2/promise";
+import { LoginRequestBody, RegisterRequestBody } from "./model";
 
 // Helper
 import Query from "../../helper/queries";
-import { verifyPassword } from "../../helper/hashing";
+import Sanitize from "../../helper/sanitize";
+import { hashPassword, verifyPassword } from "../../helper/hashing";
 import { ErrorGenerator } from "../../helper/generator";
 import { buildUserObject } from "../user/helper";
 
@@ -15,7 +16,6 @@ import { buildUserObject } from "../user/helper";
 import { randomOTP } from "../../utils/common";
 
 export const login = async (req: Request, res: Response) => {
-  const client = await Connection();
   try {
     const { phone, password }: LoginRequestBody = req.body;
     const [[result]] = await client.query<RowDataPacket[]>(
@@ -51,18 +51,19 @@ export const login = async (req: Request, res: Response) => {
     const data = { otp: randomOTP() };
     await client.query(Query.user.updateUserViaPhone(phone), data);
 
-    res.send({
-      id: user.id,
-      name: user.name,
-      username: user.username,
-      phone: user.phone,
-      role: user.role,
-      is_verified: user.is_verified,
-      media: user.media,
-    });
+    res.send(Sanitize(user, "user"));
   } catch (err) {
     res.status(500).send({ message: err.message });
   }
 };
 
-export default { login };
+export const register = async (req: Request, res: Response) => {
+  try {
+    const { email, password, phone }: RegisterRequestBody = req.body;
+    const hashedPassword = hashPassword(password);
+
+    const data = {};
+  } catch (err) {}
+};
+
+export default { login, register };

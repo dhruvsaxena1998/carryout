@@ -10,4 +10,10 @@ import Validator from "./validator";
  */
 Router.post("/login", [Validator.login], Controller.login);
 
+/**
+ * @route     /api/auth/register
+ * @method    POST
+ */
+ Router.post("/register", [Validator.register], Controller.register);
+
 export default Router;

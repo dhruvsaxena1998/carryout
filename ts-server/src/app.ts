@@ -4,7 +4,7 @@ import cors from "cors";
 import morgan from "morgan";
 
 import routes from "./routes";
-import { VerifyDB } from "./config/database";
+import { setup } from "./config/database";
 
 const app = express();
 
@@ -17,7 +17,7 @@ app.use("/api", routes);
 app.use("/public", express.static("public/"));
 app.use("/uploads", express.static("uploads/"));
 
-VerifyDB().then((isConnected) => {
+setup().then((isConnected) => {
   if (!isConnected) {
     console.log("❌ Connection failed!");
     process.exit(1);

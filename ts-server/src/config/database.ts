@@ -1,4 +1,4 @@
-import mysql, { RowDataPacket } from "mysql2/promise";
+import mysql, { RowDataPacket, Connection } from "mysql2/promise";
 
 export const connection = async () =>
   await mysql.createConnection({
@@ -10,14 +10,20 @@ export const connection = async () =>
     connectionLimit: 10,
   });
 
-export const VerifyDB = async () => {
-  const client = await connection();
+export let client: Connection;
+export const setup = async () => {
+  try {
+    client = await connection();
 
-  const [result] = await client.execute<RowDataPacket[]>(
-    `SELECT 1+1 as solution`
-  );
+    const [result] = await client.execute<RowDataPacket[]>(
+      `SELECT 1+1 as solution`
+    );
 
-  return result[0].solution === 2;
+    return result[0].solution === 2;
+  } catch (err) {
+    console.log("🐛 Something went wrong with connection");
+    return false;
+  }
 };
 
 export default connection;
