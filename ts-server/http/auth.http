@@ -8,3 +8,15 @@ Content-Type: application/json
   "phone": "9829905512",
   "password": "Tsg-msn12"
 }
+
+### REGISTER
+POST {{url}}/auth/register
+Content-Type: application/json
+
+{
+  "phone": "8123456689",
+  "email": "someone@test.com",
+  "password": "Tsg-msn12"
+}
+
+

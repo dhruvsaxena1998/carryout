@@ -19,7 +19,6 @@ app.use("/uploads", express.static("uploads/"));
 
 setup().then((isConnected) => {
   if (!isConnected) {
-    console.log("❌ Connection failed!");
     process.exit(1);
   }
 

@@ -2,7 +2,7 @@ import { client } from "../../config/database";
 
 // Types
 import { Request, Response } from "express";
-import { RowDataPacket, Connection } from "mysql2/promise";
+import { RowDataPacket, OkPacket } from "mysql2/promise";
 import { LoginRequestBody, RegisterRequestBody } from "./model";
 
 // Helper
@@ -62,8 +62,24 @@ export const register = async (req: Request, res: Response) => {
     const { email, password, phone }: RegisterRequestBody = req.body;
     const hashedPassword = hashPassword(password);
 
-    const data = {};
-  } catch (err) {}
+    const data = {
+      phone,
+      email,
+      username: email,
+      password: hashedPassword,
+      otp: randomOTP(),
+      is_verified: false,
+    };
+
+    const [result] = await client.query<OkPacket>(
+      Query.user.insertUser(),
+      data
+    );
+
+    res.send(Sanitize({ ...data, id: result.insertId }, "user"));
+  } catch (err) {
+    res.status(500).send({ message: err.message });
+  }
 };
 
 export default { login, register };
