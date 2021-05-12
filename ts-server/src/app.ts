@@ -10,6 +10,7 @@ const app = express();
 
 // Middleware
 app.use(cors());
+app.use(express.json());
 app.use(morgan(":method :url | :status | :response-time ms"));
 
 app.use("/api", routes);
