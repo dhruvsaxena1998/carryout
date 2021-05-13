@@ -1,4 +1,5 @@
 import _ from "lodash";
+import fs from 'fs'
 import { client } from "../../config/database";
 // Types
 import { IFile } from "./model";
@@ -10,7 +11,6 @@ import Query from "../../helper/queries";
 import { UploadToS3, DownloadFromS3 } from "../../helper/S3";
 import { ErrorGenerator } from "../../helper/generator";
 
-// Utils
 
 export const upload = async (req: Request, res: Response) => {
   try {
@@ -29,7 +29,9 @@ export const upload = async (req: Request, res: Response) => {
     }
 
     const [{ insertId: id }] = await client.query<OkPacket>(Query.upload.insertMedia(), file);
-
+    
+    // Removes file from server-directory
+    fs.unlinkSync(file.path);
     res.send({ ...file, id });
   } catch (err) {
     res.status(500).send({ message: err.message });
