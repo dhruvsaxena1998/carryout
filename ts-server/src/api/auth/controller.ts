@@ -3,7 +3,11 @@ import { client } from "../../config/database";
 // Types
 import { Request, Response } from "express";
 import { RowDataPacket, OkPacket } from "mysql2/promise";
-import { LoginRequestBody, RegisterRequestBody } from "./model";
+import {
+  LoginRequestBody,
+  RegisterRequestBody,
+  VerifyRequestBody,
+} from "./model";
 
 // Helper
 import Query from "../../helper/queries";
@@ -14,6 +18,7 @@ import { buildUserObject } from "../user/helper";
 
 // Utils
 import { randomOTP } from "../../utils/common";
+import { issue } from "../../utils/jsonwebtoken";
 
 export const login = async (req: Request, res: Response) => {
   try {
@@ -82,4 +87,30 @@ export const register = async (req: Request, res: Response) => {
   }
 };
 
-export default { login, register };
+export const verify = async (req: Request, res: Response) => {
+  try {
+    const { phone, otp }: VerifyRequestBody = req.body;
+
+    const [[result]] = await client.query<RowDataPacket[]>(
+      Query.auth.GetUserVerifyOTPDetails(phone, otp)
+    );
+
+    if (!result)
+      return res
+        .status(400)
+        .send(ErrorGenerator("Invalid OTP", "error.invalid-otp", "otp"));
+
+    const user = buildUserObject(result);
+    const data = { otp: null, is_verified: true };
+
+    await client.query(Query.user.updateUserViaPhone(phone), data);
+    const jwt = issue({ id: user.id, role: user.role, email: user.email });
+
+    res.send({
+      jwt,
+      user: Sanitize(user, "user"),
+    });
+  } catch (err) {}
+};
+
+export default { login, register, verify };

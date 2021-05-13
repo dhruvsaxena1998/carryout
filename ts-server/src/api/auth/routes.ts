@@ -14,6 +14,12 @@ Router.post("/login", [Validator.login], Controller.login);
  * @route     /api/auth/register
  * @method    POST
  */
- Router.post("/register", [Validator.register], Controller.register);
+Router.post("/register", [Validator.register], Controller.register);
+
+/**
+ * @route     /api/auth/verify
+ * @method    POST
+ */
+Router.post("/verify", [Validator.verify], Controller.verify);
 
 export default Router;
