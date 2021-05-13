@@ -1,0 +1,12 @@
+@url=http://localhost:5000/api
+
+### Add Item
+POST {{url}}/items
+Content-Type: application/json
+
+{
+  "name": "something randomlol",
+  "price": 10,
+  "defaultQty": 1,
+  "maxQty": 2
+}
