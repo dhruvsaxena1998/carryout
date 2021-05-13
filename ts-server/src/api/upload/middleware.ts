@@ -1,6 +1,11 @@
+import Joi from "joi";
 import multer from "multer";
 import path from "path";
 
+// Types
+import { Request, Response, NextFunction } from "express";
+
+// Utils
 import { randomAlphaNumeric } from "../../utils/common";
 
 export const storage = multer.diskStorage({
@@ -18,9 +23,26 @@ export const storage = multer.diskStorage({
       );
     } catch (err) {
       callback(err, "");
-      console.log({ message: err.message })
+      console.log({ message: err.message });
     }
   },
 });
 
 export const upload = multer({ storage });
+
+export const GetMediaValidator = (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  const schema = Joi.object({
+    key: Joi.string().required(),
+  });
+
+  const { error } = schema.validate(req.params);
+  if (error) {
+    return res.status(400).send(error.details[0]);
+  }
+
+  next();
+};

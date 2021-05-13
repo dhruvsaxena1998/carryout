@@ -36,6 +36,7 @@
     "zx": "^1.4.0"
   },
   "dependencies": {
+    "aws-sdk": "^2.906.0",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "dayjs": "^1.10.4",
