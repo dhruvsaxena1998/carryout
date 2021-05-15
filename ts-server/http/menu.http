@@ -1,0 +1,8 @@
+@url=http://localhost:5000/api
+
+### GET MENUS
+GET {{url}}/menus
+
+
+### GET A MENU
+GET {{url}}/menus/1

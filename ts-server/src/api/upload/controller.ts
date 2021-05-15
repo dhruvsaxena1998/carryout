@@ -11,7 +11,6 @@ import Query from "../../helper/queries";
 import { UploadToS3, DownloadFromS3 } from "../../helper/S3";
 import { ErrorGenerator } from "../../helper/generator";
 
-
 export const upload = async (req: Request, res: Response) => {
   try {
     if (!req.file)

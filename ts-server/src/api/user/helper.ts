@@ -31,7 +31,7 @@ export const buildUserObject = (result: {}, secure = defaultSecureOptions) => {
   const user = _.pick(result, keys) as User;
 
   // Modify user object before sending to client
-  user.is_verified = Boolean(user.is_verified);
+  user.is_verified = !!user.is_verified
 
   let _key: keyof SecureOptions;
   for (_key in options) if (options[_key]) delete user[_key];

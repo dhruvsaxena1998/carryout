@@ -4,6 +4,7 @@ import _ from "lodash";
 const templates = {
   user: ["password", "otp", "reset_token"],
   item: [],
+  menu: [],
 };
 
 interface dynamic {

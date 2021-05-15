@@ -1,6 +1,6 @@
 import Joi from "joi";
-import multer from "multer";
 import path from "path";
+import multer from "multer";
 
 // Types
 import { Request, Response, NextFunction } from "express";

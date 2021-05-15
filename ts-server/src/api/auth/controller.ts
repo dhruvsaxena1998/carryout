@@ -101,14 +101,17 @@ export const verify = async (req: Request, res: Response) => {
         .send(ErrorGenerator("Invalid OTP", "error.invalid-otp", "otp"));
 
     const user = buildUserObject(result);
-    const data = { otp: null, is_verified: true };
 
+    const data: { otp: null, is_verified?: boolean } = { otp: null }
+    if (!user.is_verified) {
+      data.is_verified = true
+    }
     await client.query(Query.user.updateUserViaPhone(phone), data);
     const jwt = issue({ id: user.id, role: user.role, email: user.email });
 
     res.send({
       jwt,
-      user: Sanitize(user, "user"),
+      user: Sanitize({ ...user, ...data}, "user"),
     });
   } catch (err) {}
 };
