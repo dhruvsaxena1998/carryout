@@ -31,7 +31,7 @@ export const upload = async (req: Request, res: Response) => {
     
     // Removes file from server-directory
     fs.unlinkSync(file.path);
-    res.send({ ...file, id });
+    res.status(201).send({ ...file, id });
   } catch (err) {
     res.status(500).send({ message: err.message });
   }

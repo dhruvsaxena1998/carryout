@@ -81,7 +81,7 @@ export const register = async (req: Request, res: Response) => {
       data
     );
 
-    res.send(Sanitize({ ...data, id: result.insertId }, "user"));
+    res.status(201).send(Sanitize({ ...data, id: result.insertId }, "user"));
   } catch (err) {
     res.status(500).send({ message: err.message });
   }
